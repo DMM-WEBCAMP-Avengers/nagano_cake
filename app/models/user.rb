@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   belongs_to :order_histories
   belongs_to :destinations, dependent: :destroy
   belongs_to :cart_products, dependent: :destroy
