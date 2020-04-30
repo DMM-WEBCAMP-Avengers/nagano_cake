@@ -3,9 +3,9 @@ class OrderedProduct < ApplicationRecord
     belongs_to :order_history
 
     enum genre:{
-        disable: 1
-        wait: 2
-        working: 3
+        disable: 1,
+        wait: 2,
+        working: 3,
         done: 4
     }
 
