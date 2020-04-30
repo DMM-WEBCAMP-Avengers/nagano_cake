@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_04_30_133824) do
 
   create_table "admin_users", force: :cascade do |t|
@@ -34,11 +33,29 @@ ActiveRecord::Schema.define(version: 2020_04_30_133824) do
     t.index ["user_id"], name: "index_cart_products_on_user_id"
   end
 
-  create_table "order_histories", force: :cascade do |t|
+    create_table "destinations", force: :cascade do |t|
     t.integer "user_id"
     t.string "addressee"
     t.string "postal_code"
     t.text "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_destinations_on_user_id"
+  end
+
+  create_table "ordered_products", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "order_history_id"
+    t.integer "price"
+    t.integer "quantity"
+    t.integer "work_status", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_history_id"], name: "index_ordered_products_on_order_history_id"
+  end
+ 
+    create_table "order_histories", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "payment_option"
     t.integer "order_status", default: 1
     t.integer "postage", default: 800
