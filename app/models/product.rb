@@ -10,7 +10,6 @@ class Product < ApplicationRecord
     validates :name
     validates :introduction
     validates :price
-    validates :image_id
     validates :validation
   end
 end
