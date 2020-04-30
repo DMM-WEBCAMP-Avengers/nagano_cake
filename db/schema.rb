@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_130438) do
 
   create_table "destinations", force: :cascade do |t|
     t.integer "user_id"
-    t.string "adressee"
+    t.string "addressee"
     t.string "postal_code"
     t.text "address"
     t.datetime "created_at", null: false
