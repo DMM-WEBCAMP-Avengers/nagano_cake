@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_121712) do
+ActiveRecord::Schema.define(version: 2020_04_30_133824) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,22 @@ ActiveRecord::Schema.define(version: 2020_04_30_121712) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "cart_products", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_cart_products_on_user_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.boolean "validation", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name"
@@ -31,13 +47,6 @@ ActiveRecord::Schema.define(version: 2020_04_30_121712) do
     t.integer "price"
     t.string "image_id"
     t.boolean "validation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "genres", force: :cascade do |t|
-    t.string "name"
-    t.boolean "validation", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
