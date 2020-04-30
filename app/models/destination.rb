@@ -4,7 +4,7 @@ belongs_to :user
 
 with_options presence: true do
     validate :user_id
-    validate :adressee
+    validate :addressee
     validate :postal_code
     validate :address
 end
