@@ -3,7 +3,7 @@ class CreateDestinations < ActiveRecord::Migration[5.2]
     create_table :destinations do |t|
 
       t.integer :user_id
-      t.string :adressee
+      t.string :addressee
       t.string :postal_code
       t.text :address
 
