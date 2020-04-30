@@ -8,8 +8,8 @@ class OrderHistory < ApplicationRecord
 	}
 
 	enum order_status: {
-		unpaied: 1,
-		payed: 2,
+		unpaid: 1,
+		paid: 2,
 		working: 3,
 		ready: 4,
 		shipped: 5
@@ -25,5 +25,4 @@ class OrderHistory < ApplicationRecord
 		validates :postage
 		validates :billing
 	end
-	add_index :order_histories, :user_id
 end

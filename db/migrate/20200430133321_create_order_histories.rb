@@ -5,12 +5,13 @@ class CreateOrderHistories < ActiveRecord::Migration[5.2]
       t.string :addressee
       t.string :postal_code
       t.text :address
-      t.integer :payment_option, default: 1
+      t.integer :payment_option
       t.integer :order_status, default: 1
       t.integer :postage, default: 800
       t.integer :billing
 
       t.timestamps
     end
+	add_index :order_histories, :user_id
   end
 end

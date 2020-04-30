@@ -36,12 +36,13 @@ ActiveRecord::Schema.define(version: 2020_04_30_133321) do
     t.string "addressee"
     t.string "postal_code"
     t.text "address"
-    t.integer "payment_option", default: 1
+    t.integer "payment_option"
     t.integer "order_status", default: 1
     t.integer "postage", default: 800
     t.integer "billing"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_order_histories_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
