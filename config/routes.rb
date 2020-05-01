@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   }
 
   root 'public/users#top'
+  put '/user' => 'public/users#destroy'
   scope module: :public do
-    resource :user, only: [:edit, :show, :update, :destroy] do
+    resource :user, only: [:edit, :show, :update] do
       collection do
         get 'cancel'
       end
