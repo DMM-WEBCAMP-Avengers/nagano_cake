@@ -1,3 +1,4 @@
+<%# トップページ下部に表示される、ログインページへのリンク %>
 <%- if controller_name != 'sessions' %>
   <br><p>既に登録済みの方</p>
   <%= link_to "こちら", new_session_path(resource_name) %><span>からログインしてください</span>
