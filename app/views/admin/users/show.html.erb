@@ -1,51 +1,51 @@
+<div class='container'>
 
-<div class=''>
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    <h2> <% user.first_name%> <% user.last_name%> さんのの会員詳細 </h2>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td> <h4>顧客ID</h4> </td>
-                <td> <% user.id %> </td>
-                <td> <% user.validation%> </td>
-            </tr>
-            <tr>
-                <td> <h4>氏名</h4>  </td>
-                <td> <% user.first_name%> </td>
-                <td> <% user.last_name%> </td>
-            </tr>
-            <tr>
-                <td> <h4>フリガナ</h4>  </td>
-                <td> <% user.kana_first_name%> </td>
-                <td> <% user.kana_last_name%> </td>
-            </tr>
-            <tr>
-                <td> <h4>郵便番号</h4>  </td>
-                <td> <% user.postal_code%> </td>
-            </tr>
-            <tr>
-                <td> <h4>住所</h4>  </td>
-                <td> <% user.address %> </td>
-            </tr>
-            <tr>
-                <td> <h4>電話番号</h4> </td>
-                <td> <% user.phone_number%> </td>
-            </tr>
-            <tr>
-                <td> <h4>メールアドレス</h4>  </td>
-                <td> <% user.email%> </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td> <%= link_to '編集する', edit_admin_user_path(user.id) %> </td>
-                <td> <%= link_to '注文履歴一覧', admin_orders_path %> </td>
-            </tr>
-        </tfoot>
-    </table>
+    <div class='row'>
+        <h3> <%= @users.first_name%> <%= @users.last_name%> さんの会員詳細</h3>
+
+        <div class="col-xs-12">
+            <table>
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td> <h5>顧客ID</h5> </td>
+                        <td> <%= @users.id %> <%= @users.validation%> </td>
+                    </tr>
+                    <tr>
+                        <td> <h5>氏名</h5>  </td>
+                        <td> <%= @users.first_name%> <%= @users.last_name%> </td>
+                    </tr>
+                    <tr>
+                        <td> <h5>フリガナ</h5>  </td>
+                        <td> <%= @users.kana_first_name%> <%= @users.kana_last_name%> </td>
+                    </tr>
+                    <tr>
+                        <td> <h5>郵便番号</h5>  </td>
+                        <td> <%= @users.postal_code%> </td>
+                    </tr>
+                    <tr>
+                        <td> <h5>住所</h5>  </td>
+                        <td> <%= @users.address %> </td>
+                    </tr>
+                    <tr>
+                        <td> <h5>電話番号</h5> </td>
+                        <td> <%= @users.phone_number%> </td>
+                    </tr>
+                    <tr>
+                        <td> <h5>メールアドレス</h5>  </td>
+                        <td> <%= @users.email%> </td>
+                    </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>    
+            
+        </div>
+    </div>
+
+    <div class='row'>
+        <%= link_to '編集する', edit_admin_user_path(@users.id), class: 'btn btn-default' %>
+
+        <%= link_to '注文履歴一覧', admin_orders_path, class: 'btn btn-default' %>
+    </div>
+
 </div>
