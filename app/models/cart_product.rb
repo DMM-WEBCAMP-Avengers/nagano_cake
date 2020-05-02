@@ -2,10 +2,10 @@ class CartProduct < ApplicationRecord
   belongs_to :user
   belongs_to :product
 
-  with_options presence: true do
-    validates :user_id
-    validates :product_id
-    validates :quantity
+  with_options presence: true do |cp|
+    cp.validates :user_id
+    cp.validates :product_id
+    cp.validates :quantity
   end
 
 end

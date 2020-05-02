@@ -5,20 +5,20 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   
-  belongs_to :order_histories
-  belongs_to :destinations, dependent: :destroy
-  belongs_to :cart_products, dependent: :destroy
+  has_many :order_histories
+  has_many :destinations, dependent: :destroy
+  has_many :cart_products, dependent: :destroy
 
   
-  with_options presence: true do
-    validates :first_name
-    validates :last_name
-    validates :kana_first_name
-    validates :kana_last_name
-    validates :postal_code
-    validates :address
-    validates :phone_number
-    validates :validation
+  with_options presence: true do |u|
+    u.validates :first_name
+    u.validates :last_name
+    u.validates :kana_first_name
+    u.validates :kana_last_name
+    u.validates :postal_code
+    u.validates :address
+    u.validates :phone_number
+    u.validates :validation
   end
 
 end

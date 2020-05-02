@@ -21,10 +21,9 @@ Faker::Config.locale = :ja
   last_name = last_names[last_name_random]
   kana_first_name = kana_first_names[first_name_random]
   kana_last_name = kana_last_names[last_name_random]
-  kana_first_name = kana_first_names
   postal_code = Faker::Address.postcode.to_s
   address = Faker::Address.state + Faker::Address.city
-  phone_number = Faker::CellPhone.formats
+  phone_number = Faker::PhoneNumber.cell_phone
   email = "example#{n}@gmail.com"
 
   user = User.create!(
@@ -47,6 +46,12 @@ Faker::Config.locale = :ja
   )
 end
 
+# 3.genres
+Genre.create!(name: "ケーキ", validation: true)
+Genre.create!(name: "プリン", validation: true)
+Genre.create!(name: "焼き菓子", validation: true)
+Genre.create!(name: "キャンディ", validation: true)
+
 # 2.products
 kinds = ["チョコレート", "チーズ", "いちご", "コーヒー", "ミルク"]
 genres = ["ケーキ", "プリン", "フィナンシェ", "キャンディ"]
@@ -59,16 +64,12 @@ genres = ["ケーキ", "プリン", "フィナンシェ", "キャンディ"]
       genre_id: (i + 1),
       name: name,
       introduction: "説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。",
-      price: price
+      price: price,
+      validation: true
     )
   end
 end
 
-# 3.genres
-Genre.create!(name: "ケーキ", validation: true)
-Genre.create!(name: "プリン", validation: true)
-Genre.create!(name: "焼き菓子", validation: true)
-Genre.create!(name: "キャンディ", validation: true)
 
 # 6.destinations
 50.times do |n|
@@ -92,75 +93,91 @@ end
 
 # 5.ordered_products
 # 4.order_histories
+
+=begin
+50個ランダムに履歴を作ります。(全ユーザーにあるとは限らない)
+流れは
+①注文履歴(仮)を作成(先に作らないと注文商品の保存ができない。)
+②その注文履歴に入る注文商品のデータを作成
+③注文履歴データを更新して保存
+(間に一度注文商品を挟まないと注文履歴データの請求金額を作れない。)
+※注文ステータス、制作ステータスは全て1のままです、。
+=end
+
 50.times do |n|
-  rand(1..3).times do |i|
-    product_id = Product.find(rand(1..20)).id
-    order_history_id = (n + 1)
-    price = Product.find(product_id).price
-    quantity = rand(1..5)
-
-    OrderedProduct.create!(
-      product_id: product_id,
-      order_history_id: order_history_id,
-      price: price,
-      quantity: quantity
-    )
-
-  end
-
   user = User.find(rand(1..50))
   destination_random = rand(0..1)
   destination = user.destinations[destination_random]
-  ordered_products = OrderedProduct.where(order_history_id: (n + 1))
 
   user_id = user.id
   addressee = destination.addressee
   postal_code = destination.postal_code
   address = destination.address
   payment_option = rand(1..2)
-  billing = 800
-    ordered_products.length.times do |k|
-      billing += ( ordered_products.price * ordered_products.quantity ) * 1.1
-    end
-
-  OrderHistory.create!(
+  billing = 800   #一度送料のみで仮作成
+  #上記の値を入れて保存すると同時に、後で使うために変数order_historyにインスタンスを入れておく。
+  order_history = OrderHistory.create!(
     user_id: user_id,
     addressee: addressee,
     postal_code: postal_code,
     address: address,
     payment_option: payment_option,
-    billing: billing,
-    created_at
+    billing: billing
   )
 
-end
+  #履歴に含まれる商品の種類数は1〜3からランダムに決めます
+  rand(1..3).times do |i|
+    #２０種類の内、どの商品を取ってくるかをランダムに決めてます
+    product_id = rand(1..Product.all.length) #←これだと同じ商品が登録される恐れあり。
+    order_history_id = order_history.id
+    price = Product.find(product_id).price
+    quantity = rand(1..5)
 
+    #上記の値を各カラムに収納して保存
+    OrderedProduct.create!(
+      product_id: product_id,
+      order_history_id: order_history_id,
+      price: price,
+      quantity: quantity
+    )
+  end
+
+  ordered_products = OrderedProduct.where(order_history_id: order_history.id)
+  billing = order_history.billing
+
+  ordered_products.each do |ordered_product|
+    billing +=  ordered_product.price * ordered_product.quantity  * 1.1
+  end
+
+  date = Faker::Date.between(from:2.month.ago, to: 2.month.from_now)
+  order_history.update!(
+    billing: billing,
+    created_at: date,
+    updated_at: date
+  )
+end
 
 
 # 7.cart_products
-# user_id
-# product_id
-# quantity
+# idが奇数のユーザーだけカート内に商品がある状態に
+1.step(50, 2) do |n|
+  rand(1..3).times do |i|
+  user_id = n
+  product_id = rand(1..Product.all.length)
+  quantity = rand(1..5)
+
+  CartProduct.create!(
+    user_id: user_id,
+    product_id: product_id,
+    quantity: quantity
+  )
+  end
+end
+
 
 # 8.admin_users
-AdminUsers.create!(
-  email: admin@gmail.com,
+AdminUser.create!(
+  email: "admin@example.com",
   password: 'password',
   password_confirmation: 'password'
 )
-
-t = Time.current
-50.times do |n|
-  name = Faker::Company.name
-  date = Faker::Date.between(from:2.month.ago, to: 2.month.from_now)
-  start_time_raw = t.beginning_of_day.since(n.to_i.hours)
-  start_time = start_time_raw.strftime("%H:%M:%S")
-  ending_time = start_time_raw.since(1.hours).strftime("%H:%M:%S")
-
-  Task.create!(
-    name: name,
-    date: date,
-    start_time: start_time,
-    ending_time: ending_time
-  )
-end

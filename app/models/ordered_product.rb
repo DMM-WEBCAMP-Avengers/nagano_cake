@@ -9,12 +9,12 @@ class OrderedProduct < ApplicationRecord
         done: 4
     }
 
-    with_option presence: true do
-        validates :product_id
-        validates :order_history_id
-        validates :price
-        validates :quantity
-        validates :work_status
+    with_options presence: true do |op|
+        op.validates :product_id
+        op.validates :order_history_id
+        op.validates :price
+        op.validates :quantity
+        op.validates :work_status
     end
 
 end
