@@ -30,13 +30,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
-gem 'devise'
-gem 'refile', require: "refile/rails", github: 'manfe/refile'
-gem 'refile-mini_magick'
-gem 'bootstrap-sass', '~> 3.3.6'
-gem 'jquery-rails'
-gem 'kaminari', '~> 1.1.1'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
