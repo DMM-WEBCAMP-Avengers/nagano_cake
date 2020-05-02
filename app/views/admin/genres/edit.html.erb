@@ -1,2 +1,22 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<h1>ジャンル編集</h1>
+<br>
+<div class="form-horizontal" role="form">
+  <%= form_for(@genre, url: admin_genre_path(@genre.id)) do |f| %>
+    <div class="form-group">
+      <div class="col-xs-7">
+        <%# ジャンル名の入力フォーム %>
+        <%= f.label :name, "ジャンル"%>
+        <%= f.text_field :name, autofocus: true %>
+
+        <%# 有効、無効のラジオボタン %>
+        <%= f.radio_button :validation, true %>
+        <%= f.label :validation, "有効", value: true, style: "display: inline-block;" %>
+        <%= f.radio_button :validation, false %>
+        <%= f.label :validation, "無効", value: false, style: "display: inline-block;" %>
+
+        <%# 「追加」ボタン %>
+        <%= f.submit "変更を保存する", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
