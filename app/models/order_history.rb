@@ -15,14 +15,14 @@ class OrderHistory < ApplicationRecord
 		shipped: 5
 	}
 
-	with_options presence: true do
-		validates :user_id
-		validates :addressee
-		validates :postal_code
-		validates :address
-		validates :payment_option
-		validates :order_status
-		validates :postage
-		validates :billing
+	with_options presence: true do |oh|
+		oh.validates :user_id
+		oh.validates :addressee
+		oh.validates :postal_code
+		oh.validates :address
+		oh.validates :payment_option
+		oh.validates :order_status
+		oh.validates :postage
+		oh.validates :billing
 	end
 end

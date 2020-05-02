@@ -5,11 +5,11 @@ class Product < ApplicationRecord
 
   attachment :image
 
-  with_options presence: true do
-    validates :genre_id
-    validates :name
-    validates :introduction
-    validates :price
-    validates :validation
+  with_options presence: true do |p|
+    p.validates :genre_id
+    p.validates :name
+    p.validates :introduction
+    p.validates :price
+    p.validates :validation
   end
 end
