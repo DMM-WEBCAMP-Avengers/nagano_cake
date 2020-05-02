@@ -1,0 +1,132 @@
+<h2>新規会員登録</h2>
+
+<div class="form-horizntal" role="form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <%# 名前(姓、名)の入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <span><b>名前</b></span>
+        </div>
+
+        <div class="col-xs-3">
+          <%= f.label :last_name, "　(姓)" %>
+          <%= f.text_field :last_name, autofocus: true, placeholder: "(例)長野" %>
+        </div>
+
+        <div class="col-xs-3">
+          <%= f.label :first_name, "　(名)" %>
+          <%= f.text_field :first_name, placeholder: "(例)慶喜" %>
+        </div>
+      </div>
+    </div>
+
+    <%# フリガナ(セイ、メイ)の入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <span><b>フリガナ</b></span>
+        </div>
+
+        <div class="col-xs-3">
+          <%= f.label :kana_last_name, "(セイ)" %>
+          <%= f.text_field :kana_last_name, autofocus: true, placeholder: "(例)ナガノ" %>
+        </div>
+
+        <div class="col-xs-3">
+          <%= f.label :kana_first_name, "(メイ)" %>
+          <%= f.text_field :kana_first_name, placeholder: "(例)ケイキ" %>
+        </div>
+      </div>
+    </div>
+
+    <%# メールアドレスの入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :email, "メールアドレス" %>
+        </div>
+        <div class="col-xs-3">
+          <%= f.email_field :email, placeholder: "(例)nagano_cake@example.com" %>
+        </div>
+      </div>
+    </div>
+
+    <%# 郵便番号の入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+        </div>
+        <div class="col-xs-3">
+          <%= f.text_field :postal_code, placeholder: "(例)1234567" %>
+        </div>
+      </div>
+    </div>
+
+    <%# 住所の入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :address, "住所" %>
+        </div>
+        <div class="col-xs-6">
+          <%= f.text_field :address, placeholder: "(例)長野県〇〇市〇〇町〇-〇-〇", style: "width: 100%;" %>
+        </div>
+      </div>
+    </div>
+
+    <%# 電話番号の入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :phone_number, "電話番号(ハイフンなし)" %>
+        </div>
+        <div class="col-xs-3">
+          <%= f.text_field :phone_number, placeholder: "(例)09012345678" %>
+        </div>
+      </div>
+    </div>
+
+    <%# パスワードの入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :password, "パスワード(6文字以上)" %>
+        </div>
+        <div class="col-xs-3">
+          <%= f.password_field :password, placeholder: "パスワード" %>
+        </div>
+      </div>
+    </div>
+
+    <%# パスワード(確認用)の入力フォーム %>
+    <div class="row">
+      <div class="form-group">
+        <div class="col-xs-3">
+          <%= f.label :password_confirmation, "パスワード(確認用)" %>
+        </div>
+        <div class="col-xs-3">
+          <%= f.password_field :password_confirmation, placeholder: "パスワード確認用" %>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <%# 「新規登録」ボタン %>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-5">
+        <div class="actions">
+          <%= f.submit "Sign up", value: "新規登録", class: "btn btn-success btn-block" %>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+
+<%# deviseの仕様で、以下のレンダーでログインページへのリンクを表示している %>
+<%= render "users/shared/links" %>
