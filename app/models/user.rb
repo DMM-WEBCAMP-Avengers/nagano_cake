@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   
-  belongs_to :order_histories
-  belongs_to :destinations, dependent: :destroy
-  belongs_to :cart_products, dependent: :destroy
+  has_many :order_histories
+  has_many :destinations, dependent: :destroy
+  has_many :cart_products, dependent: :destroy
 
   
   with_options presence: true do
