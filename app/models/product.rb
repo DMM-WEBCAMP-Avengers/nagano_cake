@@ -10,6 +10,9 @@ class Product < ApplicationRecord
     p.validates :name
     p.validates :introduction
     p.validates :price
-    p.validates :validation
   end
+
+	#boolean型はpresence: trueにしてしまうと、falseを空だと認識して弾かれてしまうので以下のように記述。
+  validates :validation, inclusion:{in: [true, false]}
+
 end

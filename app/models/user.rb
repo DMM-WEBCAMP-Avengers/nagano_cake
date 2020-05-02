@@ -18,7 +18,9 @@ class User < ApplicationRecord
     u.validates :postal_code
     u.validates :address
     u.validates :phone_number
-    u.validates :validation
   end
+
+	#boolean型はpresence: trueにしてしまうと、falseを空だと認識して弾かれてしまうので以下のように記述。
+  validates :validation, inclusion:{in: [true, false]}
 
 end
