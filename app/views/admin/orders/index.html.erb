@@ -21,7 +21,7 @@
             <%# strftimeは時間を自分の好みの表記にできるヘルパー %>
             <td><%= link_to oh.created_at.strftime("%Y/%m/%d %H:%M:%S"), "/admin/orders/#{oh.id}"  %></td>
             <td><%= "#{oh.user.last_name}　#{oh.user.first_name}" %></td>
-            <%# oh.ordered_productsで関連するordered_product(oh)データが配列としてもらえるので、 → [oh1, oh2, oh3] %>
+            <%# oh.ordered_productsで関連するordered_product(op)データが配列としてもらえるので、 → [op1, op2, op3] %>
             <%# それをmapでそれぞれ|op|として取り出し、そのquantityの配列を作成 → [2, 5, 4] %>
             <%# 最後に.sumでその配列要素の合計を取得 → 11 %>
             <td><%= oh.ordered_products.map{ |op| op.quantity}.sum %></td>
