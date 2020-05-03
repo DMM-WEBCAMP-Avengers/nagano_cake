@@ -1,2 +1,56 @@
-<h1>Admin::Orders#index</h1>
-<p>Find me in app/views/admin/orders/index.html.erb</p>
+<div class="container">
+  <%# 見出し %>
+  <div class="row">
+    <div class="page-header">
+      <h1>注文履歴一覧</h1>
+    </div>
+  </div>
+
+  <%# 注文履歴一覧テープル %>
+  <div class="row">
+    <div class="col-xs-10 table-responsive">
+      <table class="table">
+        <tr class="active">
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        <tr>
+        <% @order_histories.each do |oh| %>
+          <tr>
+            <%# strftimeは時間を自分の好みの表記にできるヘルパー %>
+            <td><%= oh.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+            <td><%= "#{oh.user.last_name}　#{oh.user.first_name}" %></td>
+            <%# oh.ordered_productsで関連するordered_product(oh)データが配列としてもらえるので、 → [oh1, oh2, oh3] %>
+            <%# それをmapでそれぞれ|op|として取り出し、そのquantityの配列を作成 → [2, 5, 4] %>
+            <%# 最後に.sumでその配列要素の合計を取得 → 11 %>
+            <td><%= oh.ordered_products.map{ |op| op.quantity}.sum %></td>
+            <td>
+            <%# oh.order_statusだとenumに設定した英語表記になるので、それをcase文を用いて対応する日本語に %>
+            <% case oh.order_status %>
+              <% when "unpaid" %>
+                <%= "入金待ち" %>
+              <% when "paid" %>
+                <%= "入金確認" %>
+              <% when "working" %>
+                <%= "製作中" %>
+              <% when "ready" %>
+                <%= "発送準備中" %>
+              <% when "shipped" %>
+                <%= "発送済み" %>
+            <% end %>
+            </td>
+          <tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+      <%# kaminariのページング記述 %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <%= paginate @order_histories %>
+    </div>
+  </div>
+
+</div>
