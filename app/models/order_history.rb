@@ -1,5 +1,5 @@
 class OrderHistory < ApplicationRecord
-	has_many :order_products
+	has_many :ordered_products
 	belongs_to :user
 
 	enum payment_option: {
