@@ -12,6 +12,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = OrderHistory.where(user_id: current_user.id)
+    @products = Product.all
   end
 
   def show
