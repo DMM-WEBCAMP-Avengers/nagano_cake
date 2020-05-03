@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-   <div class="col-xs-8 col-xs-offset-4">
+    <div class="col-xs-4 col-xs-offset-4">
         <h4>管理者ログイン</h4>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -13,15 +13,11 @@
             <%= f.label :パスワード %><br />
             <%= f.password_field :password, autocomplete: "current-password" %>
           </div>
-          <div class="row">
-           <div class="col-xs-5 col-xs-offset-1">
-            <div class="actions">
-              <%= f.submit "ログイン" , class: "btn btn-primary col-xs-0"%>
-            </div>
-           </div>
+
+          <div class="actions">
+              <%= f.submit "ログイン" , class: "btn btn-primary "%>
           </div>
         <% end %>
-
-   </div>
+    </div>
   </div>
 </div>
