@@ -1,2 +1,92 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h2>登録情報編集</h2>
+
+<div class="form-horizontal" role="form">
+	<%= form_for(@user) do |f| %>
+		
+		<div class="row">
+			<div class="form-group">
+				<div class="col-xs-3">
+					<span><b>名前</b></span>
+				</div>
+				<div class="col-xs-3">
+					<%= f.label :last_name, "　（姓）" %>
+					<%= f.text_field :last_name, autofocus: true %>
+				</div>
+				<div class="col-xs-3">
+					<%= f.label :first_name, "　（名）" %>
+					<%= f.text_field :first_name %>
+				</div>				
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group">
+				<div class="col-xs-3">
+					<span><b>フリガナ</b></span>
+				</div>
+				<div class="col-xs-3">
+					<%= f.label :kana_last_name, "（セイ）" %>
+					<%= f.text_field :kana_last_name, autofocus: true %>
+				</div>
+				<div class="col-xs-3">
+					<%= f.label :kana_first_name, "（メイ）" %>
+					<%= f.text_field :kana_first_name %>
+				</div>
+			</div>			
+		</div>
+
+		<div class="row">
+			<div class="form-group">
+				<div class=col-xs-3>
+					<%= f.label :email, "メールアドレス" %>
+				</div>
+				<div class="col-xs-3">
+					<%= f.email_field :email %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group">
+				<div class="col-xs-3">
+					<%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+				</div>
+				<div class="col-xs-3">
+					<%= f.text_field :postal_code %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group">
+				<div class="col-xs-3">
+					<%= f.label :address, "住所" %>
+				</div>
+				<div class="col-xs-3">
+					<%= f.text_field :address, style: "width: 100%" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group">
+				<div class="col-xs-3">
+					<%= f.label :phone_number, "電話番号(ハイフンなし)" %>
+				</div>
+				<div class="col-xs-3">
+					<%= f.text_field :phone_number %>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-3"></div>
+			<div class="col-xs-3">
+				<%= f.submit "編集内容を保存する", class: "btn btn-primary btn-block" %>
+			</div>
+			<div class="col-xs-3">
+				<%= link_to "退会する", cancel_user_path, class: "btn btn-danger btn-block" %>
+			</div>
+		</div>
+	<% end %>
+</div>
