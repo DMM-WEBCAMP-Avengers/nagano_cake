@@ -1,2 +1,12 @@
-<h1>Users#cancel</h1>
-<p>Find me in app/views/users/cancel.html.erb</p>
+<div class="container">
+  <div class="row">
+   <div class="col-xs-4 col-xs-offset-4">
+    <h3><strong>本当に退会しますか？</strong></h3>
+    <p>退会すると、会員登録情報や</p>
+    <p>これまでの購入履歴が閲覧できなくなります。</p>
+    <p>退会する場合は、「退会する」をクリックしてください。</p>
+    <%= link_to '退会しない', user_path, class: "btn btn-primary " %>
+    <%= link_to '退会する', root_path, class: "btn btn-danger " %>
+   </div>
+  </div>
+</div>
