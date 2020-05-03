@@ -19,7 +19,7 @@
         <% @order_histories.each do |oh| %>
           <tr>
             <%# strftimeは時間を自分の好みの表記にできるヘルパー %>
-            <td><%= oh.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+            <td><%= link_to oh.created_at.strftime("%Y/%m/%d %H:%M:%S"), "/admin/orders/#{oh.id}"  %></td>
             <td><%= "#{oh.user.last_name}　#{oh.user.first_name}" %></td>
             <%# oh.ordered_productsで関連するordered_product(oh)データが配列としてもらえるので、 → [oh1, oh2, oh3] %>
             <%# それをmapでそれぞれ|op|として取り出し、そのquantityの配列を作成 → [2, 5, 4] %>
