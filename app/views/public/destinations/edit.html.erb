@@ -1,2 +1,18 @@
-<h1>Public::Destinations#edit</h1>
-<p>Find me in app/views/public/destinations/edit.html.erb</p>
+<%# エラー文いれる %>
+<div class="container">
+  <div class="row">
+   <div class="col-xs-4 col-xs-offset-4">
+    <h4>配送先編集</h4>
+        <%= form_for(@user) do |f| %>
+         <p>郵便番号<%= f.text_field :postal_code %></p>
+         <p>住所<%= f.text_field :address %></p>
+         <p>宛名<%= f.text_field :address %> <%# addresseeカラムがない？？ %></p>
+        <div class="row">
+         <div class="col-xs-4 col-xs-offset-4">
+          <%= f.submit '編集する', class: "btn btn-primary" %> <%# updateされて配送先一覧に戻る %>
+         </div>
+        </div>
+        <% end %>
+   </div>
+  </div>
+</div>
