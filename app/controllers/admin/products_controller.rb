@@ -13,18 +13,18 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def show
   end
 
   def update
+    @product = Product.find(product[:id])
   end
 
   private
-
   def product_params
     params.require(:product).permit(:image, :name, :introduction, :genre, :price, :validation)
   end
-
 end
