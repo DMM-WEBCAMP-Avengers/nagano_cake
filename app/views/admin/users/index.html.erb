@@ -1,2 +1,45 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="container">
+
+    <div class="row">
+        <div class="page-header">
+            <h1>会員一覧</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-10 table-responsive">
+            <table class="table">
+                <tr class="active">
+                    <th>会員ID</th>
+                    <th>氏名</th>
+                    <th>メールアドレス</th>
+                    <th>ステータス</th>
+                <tr>
+                <% @users.each do |f| %>
+                    <tr>
+                        <td>
+                            <%= f.id%>
+                        </td>
+                        <td>
+                            <%= f.first_name%>  <%= f.last_name%>
+                        </td>
+                        <td>
+                            <%= f.email%>
+                        </td>
+                        <td>
+                            <%= f.validation %>
+                        </td>
+                    <tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
+
+    <%# kaminariのページング記述 %>
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <%= paginate @users %>
+        </div>
+    </div>
+
+</div>
