@@ -32,8 +32,19 @@
 								<%= order.billing %>円
 							</td>
 							<td>
-								<%= order.order_status %>
-							</td>
+								<% case order.order_status %>
+					              <% when "unpaid" %>
+					                <%= "入金待ち" %>
+					              <% when "paid" %>
+					                <%= "入金確認" %>
+					              <% when "working" %>
+					                <%= "製作中" %>
+					              <% when "ready" %>
+					                <%= "発送準備中" %>
+					              <% when "shipped" %>
+					                <%= "発送済み" %>
+					            <% end %>				
+					        </td>
 							<td>
 								<%= link_to "表示する", order_path(current_user.id), class: "btn btn-primary btn-block" %>
 							</td>
