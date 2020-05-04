@@ -11,7 +11,7 @@ class Admin::ProductsController < ApplicationController
     @product.save
     redirect_to admin_product_path(@product.id)
   end
-
+ 
   def edit
     @product = Product.find(params[:id])
   end
