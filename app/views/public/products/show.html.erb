@@ -1,2 +1,18 @@
-<h1>Public::Products#show</h1>
-<p>Find me in app/views/public/products/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 ">
+      <%= attachment_image_tag @product, :image, :fill, 100, 100, format: 'jpeg', fallback: "logo.png", size: 500 %><br>
+    </div>
+        <div class="col-xs-6 ">
+            <div>
+                <h1><%= @product.name %></h1><br>
+                <h3><%= @product.introduction %></h3><br>
+                <h2>¥<%= @product.price %>（税込み）</h2><br>
+            </div>
+            <%= form_for(@ordered_product) do |f|%>
+             <%= f.number_field :quantity %>
+             <%= f.submit "カートにいれる",:class="btn btn-primary" %>
+            <% end %>
+        </div>
+  </div>
+</div>
