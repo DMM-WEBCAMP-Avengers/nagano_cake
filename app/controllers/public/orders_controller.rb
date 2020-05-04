@@ -15,5 +15,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order_history = OrderHistory.find(params[:id])
+    @ordered_products = OrderedProduct.where(order_history_id: params[:id])
   end
 end
