@@ -9,10 +9,10 @@
                 <h3><%= @product.introduction %></h3><br>
                 <h2>¥<%= @product.price %>（税込み）</h2><br>
             </div>
-            <%= form_for(@ordered_product) do |f|%>
-             <%= f.number_field :quantity %>
-             <%= f.submit "カートにいれる",:class="btn btn-primary" %>
-            <% end %>
+            <%# <%= form_for(@cart_product) do |f| %>
+             <%# <%= f.number_field :quantity %>
+             <%# <%= f.submit 'カートにいれる',class: 'btn btn-primary' %>
+            <%# <% end %>
         </div>
   </div>
 </div>

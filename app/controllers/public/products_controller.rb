@@ -6,6 +6,6 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @ordered_product = Ordered_product.new
+    # @cart_product = Cart_product.new  errorが出る
   end
 end
