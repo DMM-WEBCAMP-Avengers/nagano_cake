@@ -15,7 +15,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @orders.each do |order| %>
+					<% @order_histories.each do |order| %>
 						<tr>
 							<td>
 								<%= order.created_at.strftime('%Y/%m/%d') %>
@@ -26,7 +26,9 @@
 								<p><%= order.addressee %></p>
 							</td>
 							<td>
-
+								<% order.ordered_products.each do |op| %>
+									<%= op.product.name %>
+								<% end %>
 							</td>
 							<td>
 								<%= order.billing %>円
@@ -55,7 +57,3 @@
 		</div>
 	</div>
 </div>
-<%= OrderHistory.includes(:product).order("products.name DESC") %>
-<% @products.each do |product|%>
-<%= product.name %>
-<% end %>
