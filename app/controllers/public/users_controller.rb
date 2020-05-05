@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   def top
+    @products = Product.all
   end
 
   def edit
