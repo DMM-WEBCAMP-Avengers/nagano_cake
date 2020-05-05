@@ -55,7 +55,10 @@
 
         <tr>
         <th>会員ステータス</th>
-        <td><%= f.select "validation", 有効: true, 無効: false %></td>  <%# 会員ステータスのformヘルパーがわからないのでひとまずこれ。 %>
+        <td><%= f.radio_button :validation, true %></td>
+        <td><%= f.label :validation, "有効", value: true, style: "display: inline-block;" %></td>
+        <td><%= f.radio_button :validation, false %></td>
+        <td><%= f.label :validation, "無効", value: false, style: "display: inline-block;" %><td>
         </tr>
 
         <tr>
@@ -66,4 +69,3 @@
    </table>
   </div>
 </div>
-
