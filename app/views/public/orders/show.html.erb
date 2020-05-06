@@ -60,22 +60,19 @@
 					<tr>
 						<td>商品合計</td>
 						<td>
-							<%= @order_history.billing-@order_history.postage %>
-							<%= "円" %>
+							<%= @order_history.billing-@order_history.postage %>円
 						</td>
 					</tr>
 					<tr>
 						<td>配送料</td>
 						<td>
-							<%= @order_history.postage %>
-							<%= "円" %>
+							<%= @order_history.postage %>円
 						</td>
 					</tr>
 					<tr>
 						<td>ご請求金額</td>
 						<td>
-							<%= @order_history.billing %>
-							<%= "円" %>
+							<%= @order_history.billing %>円
 						</td>
 					</tr>
 				</tbody>
