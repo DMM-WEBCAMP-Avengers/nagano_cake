@@ -25,4 +25,13 @@ class OrderHistory < ApplicationRecord
 		oh.validates :postage
 		oh.validates :billing
 	end
+
+	def auto_update_work_status
+		#注文ステータスが「入金確認」になったら注文商品の製作ステータスを全て「製作待ち」に。
+		if self.order_status_before_type_cast == 2
+			self.ordered_products.each do |op|
+				op.update(work_status: 2)
+			end
+		end
+	end
 end
