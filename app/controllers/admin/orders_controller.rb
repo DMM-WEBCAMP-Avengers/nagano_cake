@@ -31,10 +31,10 @@ class Admin::OrdersController < ApplicationController
       #このupdateにより注文ステータスを変更する必要が無いか確認し、必要があれば変更・保存。
       #auto_update_order_statusはordered_product.rbに定義しています。
       @ordered_product.auto_update_order_status
-      redirect_to "/admin/orders/#{@order_history.id}", success: "制作ステータスの更新が完了しました。"
+      redirect_to "/admin/orders/#{@order_history.id}", success: "製作ステータスの更新が完了しました。"
     else
       @ordered_products = @order_history.ordered_products
-      render action: :show, danger: "制作ステータスの更新に失敗しました。"
+      render action: :show, danger: "製作ステータスの更新に失敗しました。"
     end
   end
 

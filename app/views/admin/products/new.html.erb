@@ -2,6 +2,7 @@
     <h1>商品新規登録</h1>
 
     <%= form_for(@product, url:admin_products_path) do |f| %>
+        <%= render 'layouts/error_messages', model: f.object %>
         <div class="col-xs-4">
             <%= f.attachment_field :image, placeholder:"商品画像" %>
         </div>
