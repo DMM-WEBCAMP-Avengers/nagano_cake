@@ -16,6 +16,6 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order_history = OrderHistory.find(params[:id])
-    @ordered_products = OrderedProduct.where(order_history_id: params[:id])
+    @ordered_products = @order_history.ordered_products
   end
 end
