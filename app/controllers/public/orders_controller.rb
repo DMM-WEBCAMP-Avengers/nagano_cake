@@ -16,5 +16,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
+    @order_history = OrderHistory.find(params[:id])
+    @ordered_products = @order_history.ordered_products
   end
 end
