@@ -15,19 +15,19 @@
                     <th>メールアドレス</th>
                     <th>ステータス</th>
                 <tr>
-                <% @users.each do |f| %>
+                <% @users.each do |user| %>
                     <tr>
                         <td>
-                            <%= f.id%>
+                            <%= user.id%>
                         </td>
                         <td>
-                            <%= f.first_name%>  <%= f.last_name%>
+                            <%= user.first_name%>  <%= user.last_name%>
                         </td>
                         <td>
-                            <%= f.email%>
+                            <%= user.email%>
                         </td>
                         <td>
-                            <%= f.validation %>
+                            <%= user.validation %>
                         </td>
                     <tr>
                 <% end %>
