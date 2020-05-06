@@ -14,7 +14,7 @@
 
     <div class="row">
     
-        <% @products.shuffle.first(4).each do |p| %>
+        <% @products.each do |p| %>
             <div class="col-md-3"> 
                     <div>
                         <%= link_to product_path(p.id) do %>
