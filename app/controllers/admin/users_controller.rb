@@ -17,9 +17,4 @@ class Admin::UsersController < ApplicationController
   def update
   end
 
-  # private
-
-  # def user_params
-  #   params.require(:user).permit(:user_id, :validation, :first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :phone_number, :email)
-  # end
 end
