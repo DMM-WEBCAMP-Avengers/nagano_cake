@@ -16,21 +16,19 @@
     
         <% @products.each do |p| %>
             <div class="col-md-3"> 
-                    <div>
                         <%= link_to product_path(p.id) do %>
                             <%= attachment_image_tag p.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
                             <br>
                         <%= p.name %><br>
                         <% end %>
-                        ¥<%= p.price %><br>
-                    </div>
+                        ¥<%= p.price %>
             </div>
         <% end %>
 
     </div>
 
     <div>
-        <%= link_to "もっと見る", admin_products_path  %>
+        <%= link_to "もっと見る", products_path  %>
     </div>
 
 </div>
