@@ -35,15 +35,15 @@
 							</td>
 							<td>
 								<% case order.order_status %>
-					              <% when "unpaid" %>
+					            <% when "unpaid" %>
 					                <%= "入金待ち" %>
-					              <% when "paid" %>
+					            <% when "paid" %>
 					                <%= "入金確認" %>
-					              <% when "working" %>
+					            <% when "working" %>
 					                <%= "製作中" %>
-					              <% when "ready" %>
+					            <% when "ready" %>
 					                <%= "発送準備中" %>
-					              <% when "shipped" %>
+					            <% when "shipped" %>
 					                <%= "発送済み" %>
 					            <% end %>				
 					        </td>
