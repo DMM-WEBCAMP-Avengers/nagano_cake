@@ -49,6 +49,7 @@
       <%# kaminariのページング記述 %>
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
+      <%# ページネーションのページ遷移の際にparamsを渡して、以前のページの情報を使い回す %>
       <%= paginate @order_histories, params: { prev_path: @path, user_id: @user_id} %>
     </div>
   </div>
