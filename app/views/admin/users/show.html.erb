@@ -45,7 +45,7 @@
     <div class='row'>
         <%= link_to '編集する', edit_admin_user_path(@users.id), class: 'btn btn-default' %>
 
-        <%= link_to '注文履歴一覧', admin_orders_path, class: 'btn btn-default' %>
+        <%= link_to '注文履歴一覧', admin_orders_path(user_id: @users.id), class: 'btn btn-default' %>
     </div>
 
 </div>
