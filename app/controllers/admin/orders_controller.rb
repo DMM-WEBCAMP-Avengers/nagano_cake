@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
   def index
     #ページネーションで飛んできた時は@pathをparams[:prev_path]から取り、他のページから遷移してきた時はrequest.refererから@pathを取得。
     #params[:prev_path]がハッシュだからなのか、普通に@path = params[:prev_path]とするとunpermitted_paramsとしてエラーが出る。ひとまず.permit!を付けて解決。
-    params[:prev_path].exists? ? @path = params[:prev_path].permit! : @path = Rails.application.routes.recognize_path(request.referer)
+    params[:prev_path].nil? ? @path = Rails.application.routes.recognize_path(request.referer) : @path = params[:prev_path].permit!
 
     #@pathの中身で遷移元のページを判断
     if @path[:controller] == "admin/users"
