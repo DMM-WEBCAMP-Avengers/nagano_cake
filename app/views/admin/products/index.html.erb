@@ -8,7 +8,7 @@
 		</div>
 	</div>
 
-	<div class="row">		
+	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1">
 			<table class="table table-hover table-resposive">
 				<thead>
@@ -30,17 +30,17 @@
 								<%= link_to product.name, admin_product_path(product.id) %>
 							</td>
 							<td>
-								<%= product.price %>
+								<%# 5/7 money_notationを追加 %>
+								<%=  money_notation(product.price*1.1) %>
 							</td>
 							<td>
 								<%= product.genre.name %>
 							</td>
 							<td>
-								<%# enumと違い数値ではなく直接true/falseで区別しているので""で囲む必要なし %>
-								<% case product.validation %>
-								<% when true %>
+								<%# 5/7 case文からif文に変更→スッキリコードに変更 %>
+								<% if product.validation == true %>
 									<%= "販売中" %>
-								<% when false %>
+								<% else %>
 									<%= "売り切れ" %>
 								<% end %>
 							</td>
