@@ -1,2 +1,54 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<div class="container">
+	<div class="row">
+			<h1>商品詳細</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-4">
+			<p>商品イメージ</p>
+		</div>
+		<div class="col-xs-8">
+			<div class="table-responsive">
+				<table class="table text-nowrap">
+					<tbody>
+						<tr>
+							<td>商品名</td>
+							<td>
+								<%= @product.name %>
+							</td>
+						</tr>
+						<tr>
+							<td>商品説明</td>
+							<td>
+								<%= @product.introduction %>
+							</td>
+						</tr>
+						<tr>
+							<td>ジャンル</td>
+							<td>
+								<%= @product.genre.name %>
+							</td>
+						</tr>
+						<tr>
+							<td>税込価格（税別価格）</td>
+							<td>
+								<%= money_notation(@product.price*1.1) %>
+								(<%= @product.price %>)円
+							</td>
+						</tr>
+						<tr>
+							<td>販売ステータス</td>
+							<td>
+								<% if @product.validation == true %>
+									<%= "販売中" %>
+								<% else %>
+									<%= "売り切れ" %>
+								<% end %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
