@@ -1,16 +1,20 @@
 <div class="container">
      <h4>商品編集</h4>
-      <%= form_for(@product,url: admin_product_path) do |f| %> <%# urlを追加してみたけどerror%>
+      <%= form_for(@product,url: admin_product_path(@product.id)) do |f| %>    <%# urlを追加してみたけどerror%>
         <div class="col-xs-6">
            <%= attachment_image_tag @product, :image, :fill, 400, 400,format: 'jpeg', fallback: "logo.png", size:'400x400' %><%# defaultで画像を用意する%>
            <%= f.attachment_field :image %>
         </div>
         <div class="col-xs-6">
           <p>商品名 <%= f.text_field :name %> </p>
-          <p>商品説明 <%= f.text_area :introduction, size: 25 %></p>
-          <p>ジャンル <%= f.select :genre_id %> </p>  <%# select %>
+          <p>商品説明 <%= f.text_area :introduction, size: 25 %> </p>
+          <p>ジャンル <%= f.collection_select :genre_id, Genre.all, :id, :name %> </p>  <%# collection_select :genre_idはProdubctMODEL、:id, :name はgenreモデル %>
           <p>税抜価格 <%= f.text_field :price %>円 </p> <%# error %>
-          <p>販売ステータス <%= f.select :validation %></p> <%# select %>
+          <p>販売ステータス <%= f.select :validation, {
+             "販売中": true,
+             "売り切れ": false
+          } %> </p> <%# select %>
           <%= f.submit "変更を保存",class: "btn btn-primary" %>
       <% end %>
 </div>
+
