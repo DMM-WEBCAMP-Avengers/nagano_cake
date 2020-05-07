@@ -1,2 +1,62 @@
-<h1>Admin::Products#show</h1>
-<p>Find me in app/views/admin/products/show.html.erb</p>
+<div class="container">
+	<div class="row">
+			<h1>商品詳細</h1>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-4">
+			<%= attachment_image_tag @product, :image_id, :fill, 50, 50, format: "jpeg", fallback: "logo.png", size:'245x245' %>
+		</div>
+		<div class="col-xs-8">
+			<div class="table-responsive">
+				<table class="table text-nowrap">
+					<tbody>
+						<tr>
+							<td>商品名</td>
+							<td>
+								<%= @product.name %>
+							</td>
+						</tr>
+						<tr>
+							<td>商品説明</td>
+							<td>
+								<%= @product.introduction %>
+							</td>
+						</tr>
+						<tr>
+							<td>ジャンル</td>
+							<td>
+								<%= @product.genre.name %>
+							</td>
+						</tr>
+						<tr>
+							<td>税込価格（税別価格）</td>
+							<td>
+								<%= money_notation(@product.price*1.1) %>
+								<%# money_notatioの追加 %>
+								(<%= money_notation(@product.price) %>)円
+							</td>
+						</tr>
+						<tr>
+							<td>販売ステータス</td>
+							<td>
+								<% if @product.validation == true %>
+									<%# tdで囲まれているため<%=>の削除 %>
+									販売中
+								<% else %>
+									売り切れ
+								<% end %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="text-right">
+			<%= link_to "編集", edit_admin_product_path(@product.id), class: "btn btn-primary" %>
+		</div>
+	</div>
+</div>

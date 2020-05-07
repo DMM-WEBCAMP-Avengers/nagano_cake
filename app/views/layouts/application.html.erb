@@ -49,7 +49,7 @@
                 </li>
                 <li>
                   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-                </li>                
+                </li>
               <% end %>
             <% elsif admin_user_signed_in? %>
                 <li>
@@ -76,11 +76,20 @@
                 </li>
                 <li>
                   <%= link_to "ログイン", new_user_session_path %>
-                </li>                             
+                </li>
             <% end %>
             <li><a href="" title=""></a></li>
           </ul>
         </nav>
+        <div class="row">
+          <div class="col-xs-12">
+            <% flash.each do |key, value| %>
+              <% key = "info" if key == "notice" %>
+              <% key = "danger" if key == "alert" %>
+              <%= content_tag :div, value, class: "alert alert-#{key}" %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </header><!-- /header -->
     <%= yield %>

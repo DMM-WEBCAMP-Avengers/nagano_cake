@@ -1,2 +1,65 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4><%= @user.last_name %><%= @user.first_name %>さんの会員情報編集</h4>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+   <table>
+    <tbody>
+    <%= form_for(@user, url: admin_user_path(@user.id)) do |f| %>
+        <tr>
+        <th>会員ID</th>
+        <td><%= @user.id %></td>
+        </tr>
+
+        <tr>
+        <th>氏名</th>
+        <td><%= f.text_field :last_name %></td>
+        <td><%= f.text_field :first_name %></td>
+        </tr>
+
+        <tr>
+        <th>フリガナ</th>
+        <td><%= f.text_field :kana_last_name %></td>
+        <td><%= f.text_field :kana_first_name %></td>
+        </tr>
+
+        <tr>
+        <th>郵便番号</th>
+        <td><%= f.text_field :postal_code %></td>
+        </tr>
+
+        <tr>
+        <th>住所</th>
+        <td><%= f.text_field :address %></td>
+        </tr>
+
+        <tr>
+        <th>電話番号</th>
+        <td><%= f.telephone_field :phone_number %></td>
+        </tr>
+
+        <tr>
+        <th>メールアドレス</th>
+        <td><%= f.text_field :email %></td>
+        </tr>
+
+        <tr>
+        <th>会員ステータス</th>
+        <td><%= f.radio_button :validation, true %>
+            <%= f.label :validation, "有効", value: true %>
+        </td>
+        <td><%= f.radio_button :validation, false %>
+            <%= f.label :validation, "退会済み", value: false %>
+        </td>
+        </tr>
+
+        <tr>
+        <th><%= f.submit '変更を保存する',class: "btn btn-primary"%></th>
+        </tr>
+    <% end %>
+    </tbody>
+   </table>
+  </div>
+</div>

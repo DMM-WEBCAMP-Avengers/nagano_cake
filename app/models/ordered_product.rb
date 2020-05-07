@@ -18,7 +18,7 @@ class OrderedProduct < ApplicationRecord
     end
 
     def subtotal
-        self.quantity * self.product.price
+        self.quantity * self.price
     end
 
     #ここはかなり見づらくなってしまいました。すみません。
