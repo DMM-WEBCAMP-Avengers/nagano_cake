@@ -9,6 +9,7 @@
   <%# 配送先登録 入力フォーム %>
   <div class="form-horizontal" role="form">
     <%= form_for(@destination, url: destinations_path) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
 
       <%# 郵便番号入力欄 %>
       <div class="form-group">

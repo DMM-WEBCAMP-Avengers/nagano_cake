@@ -15,3 +15,23 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.bg_test-text {
+    border:  solid 1px;                             /* 枠線指定 */
+    display:  inline-block;                         /* インラインブロックにする */
+    padding: 30px 30px;                             /* 余白指定 */
+    background-color: white;     /* 背景色指定 */
+}
+
+.bg_test {
+    text-align:  center;    /* 文字中央寄せ */
+    padding:  150px;        /* 余白指定 */
+    border: solid 2px;      /* 枠線指定 */
+    background-image: url(logo.png);    /* 背景画像指定 */
+    background-size: 160px;
+    background-position: center;
+}
+
+.table-noborder>tbody>tr>td{
+  border-style: none;
+}

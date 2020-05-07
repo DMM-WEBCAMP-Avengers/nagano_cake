@@ -1,2 +1,133 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+  <%# 見出し %>
+  <div class="row">
+    <div class="page-header">
+      <h1>注文履歴詳細</h1>
+    </div>
+  </div>
+
+  <%# 注文履歴詳細内容 %>
+  <div class="row">
+    <div class="col-xs-8">
+      <%= render 'layouts/error_messages', model: @order_history %>
+      <table class="table table-noborder">
+        <%# 購入者情報表示行 %>
+        <tr>
+          <td><b>購入者</b></td>
+          <td><%= link_to "#{@order_history.user.last_name}　#{@order_history.user.first_name}", admin_user_path(@order_history.user.id) %></td>
+        </tr>
+
+        <%# 配送先情報表示行 %>
+        <tr>
+          <td><b>配送先</b></td>
+          <td>
+          <p><%= "〒#{@order_history.postal_code} #{@order_history.address}" %></p>
+          <p><%= @order_history.addressee %></p>
+          </td>
+        </tr>
+
+        <%# 支払い方法表示行 %>
+        <tr>
+          <td><b>支払い方法</b></td>
+          <td>
+          <%= @order_history.payment_option_before_type_cast == 1 ? "銀行振込" : "クレジットカード" %>
+          </td>
+        </tr>
+
+        <%# 注文ステータス表示・更新行 %>
+        <tr>
+          <td><b>注文ステータス</b></td>
+          <td>
+            <%= form_for(@order_history, url: "/admin/orders/#{@order_history.id}/order_update") do |f| %>
+              <%= render 'layouts/error_messages', model: f.object %>
+              <%# f.select内で使用するために定義 %>
+              <% order_statuses = {"入金待ち": 1, "入金確認": 2, "製作中": 3, "発送準備中": 4, "発送済み": 5} %>
+              <%# 初期値はorder_statusカラムの数値に対応したものに。 %>
+              <%= f.select :order_status, options_for_select(
+                order_statuses.map{ |key, value| [key, value]},
+                @order_history.order_status_before_type_cast
+              )%>
+              <%= f.submit "更新", class: "btn btn-primary"%>
+            <% end %>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <%# 注文商品一覧テープル %>
+  <div class="row">
+    <div class="col-xs-8 table-responsive">
+      <table class="table">
+        <tr class="active">
+          <th>商品名</th>
+          <th>単価(税込み)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>制作ステータス</th>
+        <tr>
+        <% @ordered_products.each do |op| %>
+          <tr>
+            <%# 商品名を表示 %>
+            <%# strftimeは時間を自分の好みの表記にできるヘルパー %>
+            <td><%= op.product.name %></td>
+
+            <%# 単価(姓込みを表示) %>
+            <%# money_notationはapplication_helper.rbに定義しました。 %>
+            <td><%= money_notation(op.price * 1.1) %></td>
+
+            <%# 注文数量を表示 %>
+            <td><%= op.quantity %></td>
+
+            <%# 商品小計を表示 %>
+            <%# .subtotalはordered_product.rbに定義しました %>
+            <td><%= money_notation(op.subtotal * 1.1) %></td>
+            <%# 制作ステータスの更新フォーム %>
+            <td>
+              <%= form_for(op, url: "/admin/orders/#{op.id}") do |f| %>
+                <%# f.select内で使うために定義 %>
+                <% work_statuses = { "着手不可": 1, "製作待ち": 2, "製作中": 3, "製作完了": 4 } %>
+                <%# 初期値はwork_statusカラムの数値に対応したものに。 %>
+                <%= f.select :work_status, options_for_select(
+                  work_statuses.map{ |key, value| [key, value] },
+                  op.work_status_before_type_cast
+                )%>
+                <%= f.submit "更新", class: "btn btn-primary"%>
+              <% end %>
+            </td>
+          <tr>
+        <% end %>
+      </table>
+    </div>
+
+    <%# 商品合計、送料、請求金額合計表示欄 %>
+    <div class="col-xs-4">
+      <table class="table table-noborder">
+        <tr>
+          <td><b>商品合計</b></td>
+          <%# amount()はordered_productsに定義しました。 %>
+          <td><%= money_notation( amount(@ordered_products) * 1.1 ) %>円</td>
+        </tr>
+        <tr>
+          <td><b>送料</b></td>
+          <td><%= @order_history.postage %>円</td>
+        </tr>
+        <tr>
+          <td><b>請求金額合計</b></td>
+          <td>
+          <%# 念のため算出した料金と請求金額カラムの値が等しいかどうかを確認し、違う場合は異常を知らせる %>
+          <% if @order_history.billing == amount(@ordered_products) * 1.1 + @order_history.postage %>
+            <%= @order_history.billing %>円
+          <% else %>
+            <%= @order_history.billing %>円
+            料金に異常があります。
+            お店へお問い合わせください。
+          <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>

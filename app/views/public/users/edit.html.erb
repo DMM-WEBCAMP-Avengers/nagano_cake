@@ -2,7 +2,7 @@
 
 <div class="form-horizontal" role="form">
 	<%= form_for(@user) do |f| %>
-		
+		<%= render 'layouts/error_messages', model: f.object %>
 		<div class="row">
 			<div class="form-group">
 				<div class="col-xs-3"></div>
