@@ -6,14 +6,6 @@
 <div class="container">
   <div class="row">
    <table>
-    <thead>
-	  <tr>
-		<th>  </th>
-		<th>  </th>
-		<th>  </th>
-	  </tr>
-	</thead>
-
     <tbody>
     <%= form_for(@user) do |f| %>
         <tr>
@@ -54,11 +46,11 @@
         </tr>
 
         <tr>
-        <th>会員ステータス</th>
-        <td><%= f.radio_button :validation, true %></td>
-        <td><%= f.label :validation, "有効", value: true, style: "display: inline-block;" %></td>
-        <td><%= f.radio_button :validation, false %></td>
-        <td><%= f.label :validation, "無効", value: false, style: "display: inline-block;" %><td>
+        <th>会員ステータス</th> <%# 下記、[]:male]と%[]:female]の役割がよく分かっていない。[style:]はtable設定で意味を成していない？ %>
+        <td><%= f.radio_button :validation, :male %></td>
+        <td><%= f.label :validation, "有効", {value: :male, style: "display: inline-block;"}  %></td>
+        <td><%= f.radio_button :validation, :female %></td>
+        <td><%= f.label :validation, "無効", {value: :female, style: "display: inline-block;"}  %></td>
         </tr>
 
         <tr>
