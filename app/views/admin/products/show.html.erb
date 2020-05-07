@@ -33,16 +33,18 @@
 							<td>税込価格（税別価格）</td>
 							<td>
 								<%= money_notation(@product.price*1.1) %>
-								(<%= @product.price %>)円
+								<%# money_notatioの追加 %>
+								(<%= money_notation(@product.price) %>)円
 							</td>
 						</tr>
 						<tr>
 							<td>販売ステータス</td>
 							<td>
 								<% if @product.validation == true %>
-									<%= "販売中" %>
+									<%# tdで囲まれているため<%=>の削除 %>
+									販売中
 								<% else %>
-									<%= "売り切れ" %>
+									売り切れ
 								<% end %>
 							</td>
 						</tr>
