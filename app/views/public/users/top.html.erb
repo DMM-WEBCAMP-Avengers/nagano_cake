@@ -1,2 +1,36 @@
-<h1>Users#top</h1>
-<p>Find me in app/views/users/top.html.erb</p>
+<div class="container" >
+    <div class="bg_test">
+        <div class="bg_test-text">
+                <p>ようこそ、NaganoCakeへ！</p>
+                <p>このサイトは、ケーキ販売のECサイトになります。</p>
+                <p>会員でない方も商品の閲覧はできますが、</p>
+                <p>購入には会員登録が必要になります。</p>
+        </div>
+    </div>
+
+    <div>
+        <strong>オススメ商品</strong>
+    </div>
+
+    <div class="row">
+
+        <% @products.each do |product| %>
+            <div class="col-md-2"> 
+                        <%= link_to product_path(product.id) do %>
+                        <br>
+                            <%= attachment_image_tag product.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
+                            <br>
+                            <%= product.name %>
+                            <br> 
+                        <% end %>
+                        ¥<%= product.price %>
+            </div>
+        <% end %>
+
+    </div>
+
+    <div>
+        <%= link_to "もっと見る", products_path  %>
+    </div>
+
+</div>
