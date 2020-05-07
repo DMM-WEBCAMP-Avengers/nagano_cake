@@ -3,6 +3,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
 
   def edit
@@ -10,7 +12,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @users = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
