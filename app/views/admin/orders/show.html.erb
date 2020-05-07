@@ -9,6 +9,7 @@
   <%# 注文履歴詳細内容 %>
   <div class="row">
     <div class="col-xs-8">
+      <%= render 'layouts/error_messages', model: @order_history %>
       <table class="table table-noborder">
         <%# 購入者情報表示行 %>
         <tr>
@@ -38,6 +39,7 @@
           <td><b>注文ステータス</b></td>
           <td>
             <%= form_for(@order_history, url: "/admin/orders/#{@order_history.id}/order_update") do |f| %>
+              <%= render 'layouts/error_messages', model: f.object %>
               <%# f.select内で使用するために定義 %>
               <% order_statuses = {"入金待ち": 1, "入金確認": 2, "製作中": 3, "発送準備中": 4, "発送済み": 5} %>
               <%# 初期値はorder_statusカラムの数値に対応したものに。 %>

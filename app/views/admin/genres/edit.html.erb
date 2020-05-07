@@ -2,6 +2,7 @@
 <br>
 <div class="form-horizontal" role="form">
   <%= form_for(@genre, url: admin_genre_path(@genre.id)) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="form-group">
       <div class="col-xs-7">
         <%# ジャンル名の入力フォーム %>
