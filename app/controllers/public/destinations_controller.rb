@@ -10,11 +10,10 @@ class Public::DestinationsController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-      if
-       @user.update(user_params)
-       redirect_to destinations_path(@user.id)
-      else
+    if
+      @user.update(current_user)
+      redirect_to destinations_path(@user.id)
+    else
        render :edit
       end
   end

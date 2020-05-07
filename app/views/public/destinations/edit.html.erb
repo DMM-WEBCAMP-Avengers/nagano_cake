@@ -3,10 +3,10 @@
   <div class="row">
    <div class="col-xs-4 col-xs-offset-4">
     <h4>配送先編集</h4>
-        <%= form_for(@user) do |f| %>
+        <%= form_for(@user) do |f| %>  <%# (@user, url: destinations_path)もerror %>
          <p>郵便番号<%= f.text_field :postal_code %></p>
          <p>住所<%= f.text_field :address %></p>
-         <p>宛名<%= f.text_field :address %> <%# addresseeカラムがない？？ %></p>
+         <p>宛名<%= f.text_field :addressee %></p> 
         <div class="row">
          <div class="col-xs-4 col-xs-offset-4">
           <%= f.submit '編集する', class: "btn btn-primary" %> <%# updateされて配送先一覧に戻る %>
