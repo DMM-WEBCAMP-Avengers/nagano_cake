@@ -1,6 +1,6 @@
 <div class="container">
      <h4>商品編集</h4>
-      <%= form_for(@product,url: admin_product_path) do |f| %>
+      <%= form_for(@product,url: admin_product_path) do |f| %> <%# urlを追加してみたけどerror%>
         <div class="col-xs-6">
            <%= attachment_image_tag @product, :image, :fill, 400, 400,format: 'jpeg', fallback: "logo.png", size:'400x400' %><%# defaultで画像を用意する%>
            <%= f.attachment_field :image %>
