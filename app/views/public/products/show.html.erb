@@ -9,10 +9,10 @@
                 <h3><%= @product.introduction %></h3><br>
                 <h2>¥<%= @product.price %>（税込み）</h2><br>
             </div>
-            <%# <%= form_for(@cart_product) do |f| %>
-             <%# <%= f.number_field :quantity %>
-             <%# <%= f.submit 'カートにいれる',class: 'btn btn-primary' %>
-            <%# <% end %>
+            <%= form_for(@cart_product, url: cart_products_path) do |f| %> <%# ここにurlをいれる or カートプロダクトコントローラのcreateアクションをいじる?? %>
+             <%= f.number_field :quantity, placeholder: "個数選択",class: 'btn btn-default'  %> <%# "個数選択"と、薄く表記がされる数値以外を受け付けないフォーム生成 %>
+             <%= f.submit 'カートにいれる',class: 'btn btn-primary' %>
+            <% end %>
         </div>
   </div>
 </div>
