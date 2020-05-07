@@ -5,7 +5,7 @@
 
 	<div class="row">
 		<div class="col-xs-4">
-			<p>商品イメージ</p>
+			<%= attachment_image_tag @product, :image_id, :fill, 50, 50, format: "jpeg", fallback: "logo.png", size:'245x245' %>
 		</div>
 		<div class="col-xs-8">
 			<div class="table-responsive">
@@ -49,6 +49,12 @@
 					</tbody>
 				</table>
 			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="text-right">
+			<%= link_to "編集", edit_admin_product_path(@product.id), class: "btn btn-primary" %>
 		</div>
 	</div>
 </div>
