@@ -1,2 +1,14 @@
-<h1>Users#top</h1>
-<p>Find me in app/views/users/top.html.erb</p>
+<div class="container">
+    <div class='row'>
+        <h2 class="admin-homes-top-title">管理者画面</h2>
+
+        <h3>
+        <div class="col-xs-3">
+            本日の注文件数
+        </div>  
+        <div class="col-xs-9">
+            <%= link_to @order_histories.count, admin_orders_path %> 件
+        </div>
+        </h3>
+    </div>
+</div>
