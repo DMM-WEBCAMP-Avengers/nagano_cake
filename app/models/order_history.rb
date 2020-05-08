@@ -26,6 +26,9 @@ class OrderHistory < ApplicationRecord
 		oh.validates :billing
 	end
 
+	#日本の郵便番号は必ず7桁らしいです。
+	validates :postal_code, format: { with: /\d{7}/}
+
 	def auto_update_work_status
 		#注文ステータスが「入金確認」になったら注文商品の製作ステータスを全て「製作待ち」に。
 		if self.order_status_before_type_cast == 2
