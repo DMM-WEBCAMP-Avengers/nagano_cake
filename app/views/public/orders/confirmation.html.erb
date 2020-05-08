@@ -1,2 +1,84 @@
-<h1>Public::Orders#confirmation</h1>
-<p>Find me in app/views/public/orders/confirmation.html.erb</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="order-confirm">
+            <h2 class="ec-order-confirm-title">注文情報確認</h2>
+                <div class="flex">
+                    <!--購入商品テーブル-->
+                    <div class="confirm-products">
+                        <table class="table">
+                            <thead>
+                                <tr class="active">
+                                    <th>商品名</th>
+                                    <th class="text-right">単価（税込）</th>
+                                    <th class="text-right">数量</th>
+                                    <th class="text-right">小計</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @cart_products.each do |cart_product| %>
+                                    <tr>
+                                        <td><%= cart_product.product.name %></td>
+                                        <td class="text-right"><%= money_notation((cart_product.product.price * 1.1)) %>円</td>
+                                        <td class="text-right"><%= cart_product.quantity %></td>
+                                        <td class="text-right"><%=  money_notation((cart_product.product.price*cart_product.quantity*1.1))%>円</td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--金額テーブル-->
+                    <div class="confirm-prise">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th class="active">送料</th>
+                                    <td class="text-right"><%=  @order_histories.postage %>円</td>
+                                </tr>
+                                <%# <tr> %>
+                                    <%# <th class="active">商品合計</th> %>
+                                    <%# <td class="text-right"><%= @cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum %>円 </td> %>
+                                <%# </tr> %>
+                                <%# <tr> %>
+                                    <%# <th class="active">請求金額</th> %>
+                                    <%# <td class="text-right"><%=  @order_histories.billing %>円</td> %>
+                                <%# </tr> %>
+                            <%# </tbody> %>
+                            <%# <tbody> %>
+                                <tr>
+                                    <th class="active">送料</th>
+                                    <td class="text-right">800円</td>
+                                </tr>
+                                <tr>
+                                    <th class="active">商品合計</th>
+                                    <td class="text-right"><%= @cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum %>円 </td>
+                                </tr>
+                                <tr>
+                                    <th class="active">請求金額</th>
+                                    <td class="text-right"><%=  @cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum + 800%>円 </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="confirm-info row">
+                    <table>
+                        <tr>
+                            <th class="col-xs-4">お支払い方法</th>
+                            <%# <td class="col-xs-8"><%= @order_histories.payment_option %></td> %>
+                        </tr>
+                        <tr>
+                            <th class="col-xs-4">お届け先</th>
+                            <td class="col-xs-8">
+                                <%# <%=  @order_histories.postal_code %> %>
+                                <%# <%= @order_history.address %><br> %>
+                                <%# <%= @order_history.addressee %> %>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                    <%= link_to "購入を確定する", orders_path(@ordered_products), method: :post, class:"btn btn-primary" %>
+        </div>
+    </div>
+</div>
