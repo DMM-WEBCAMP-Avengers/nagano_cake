@@ -21,9 +21,9 @@ Faker::Config.locale = :ja
   last_name = last_names[last_name_random]
   kana_first_name = kana_first_names[first_name_random]
   kana_last_name = kana_last_names[last_name_random]
-  postal_code = Faker::Address.postcode.to_s
+  postal_code = Faker::Address.postcode.to_s.delete("-")
   address = Faker::Address.state + Faker::Address.city
-  phone_number = Faker::PhoneNumber.cell_phone
+  phone_number = Faker::PhoneNumber.cell_phone.delete("-")
   email = "example#{n}@gmail.com"
 
   user = User.create!(
@@ -79,7 +79,7 @@ end
   last_name = last_names[last_name_random]
 
   addressee = "#{last_name}　#{first_name}"
-  postal_code = Faker::Address.postcode.to_s
+  postal_code = Faker::Address.postcode.to_s.delete("-")
   address = Faker::Address.state + Faker::Address.city
 
   Destination.create!(
