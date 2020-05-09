@@ -7,10 +7,9 @@ class Public::OrdersController < ApplicationController
 
   def confirmation
     @cart_products = CartProduct.where(user_id: current_user.id)
-    @order_histories = OrderHistory.where(user_id: current_user.id)
-    # @order_histories = current_user.order_histories.find(order_history_params)
-    # @order_histories = @cart_products.user_id.find(current_order_history)
-    @ordered_products =
+    @order_history = OrderHistory.where(user_id: current_user.id)
+    # @order_history = current_user.order_histories.find(order_history_params)
+    # @order_history = @cart_products.user_id.find(current_order_history)
   end
 
   def finish

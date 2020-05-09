@@ -32,7 +32,7 @@
                             <tbody>
                                 <tr>
                                     <th class="active">送料</th>
-                                    <td class="text-right"><%=  @order_histories.postage %>円</td>
+                                    <td class="text-right"><%=  @order_history.postage %>円</td>
                                 </tr>
                                 <%# <tr> %>
                                     <%# <th class="active">商品合計</th> %>
@@ -40,7 +40,7 @@
                                 <%# </tr> %>
                                 <%# <tr> %>
                                     <%# <th class="active">請求金額</th> %>
-                                    <%# <td class="text-right"><%=  @order_histories.billing %>円</td> %>
+                                    <%# <td class="text-right"><%=  @order_history.billing %>円</td> %>
                                 <%# </tr> %>
                             <%# </tbody> %>
                             <%# <tbody> %>
@@ -65,12 +65,12 @@
                     <table>
                         <tr>
                             <th class="col-xs-4">お支払い方法</th>
-                            <%# <td class="col-xs-8"><%= @order_histories.payment_option %></td> %>
+                            <%# <td class="col-xs-8"><%= @order_history.payment_option %></td> %>
                         </tr>
                         <tr>
                             <th class="col-xs-4">お届け先</th>
                             <td class="col-xs-8">
-                                <%# <%=  @order_histories.postal_code %> %>
+                                <%# <%=  @order_history.postal_code %> %>
                                 <%# <%= @order_history.address %><br> %>
                                 <%# <%= @order_history.addressee %> %>
                             </td>
