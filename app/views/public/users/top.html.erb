@@ -15,8 +15,9 @@
     <div class="row">
 
         <% @products.each do |p| %>
-            <div class="col-md-3"> 
-                        <%= link_to product_path(p.id) do %>
+            <div class="col-md-3">
+                        <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
+                        <%= link_to product_path(p.id), :style=>"color:black" do %>
                             <%= attachment_image_tag p.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
                             <br>
                             <%= p.name %><br>
@@ -28,7 +29,8 @@
     </div>
 
     <div>
-        <%= link_to "もっと見る", products_path  %>
+        <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
+        <%= link_to "もっと見る", products_path, :style=>"color:black" %>
     </div>
 
 </div>
