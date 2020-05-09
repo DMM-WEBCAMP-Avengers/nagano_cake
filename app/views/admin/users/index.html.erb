@@ -21,13 +21,17 @@
                             <%= user.id%>
                         </td>
                         <td>
-                            <%= user.last_name%>　<%= user.first_name%>  
+							<%= link_to user.last_name+user.first_name, admin_user_path(user.id) %>
                         </td>
                         <td>
                             <%= user.email%>
                         </td>
                         <td>
-                            <%= user.validation %>
+                            <% if user.validation == true %>
+								<%= "有効" %>
+							<% else %>
+								<%= "退会済み" %>
+							<% end %>
                         </td>
                     <tr>
                 <% end %>
