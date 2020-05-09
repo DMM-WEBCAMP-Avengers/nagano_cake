@@ -17,15 +17,9 @@
                 <tr>
                 <% @users.each do |user| %>
                     <tr>
-                        <td>
-                            <%= user.id%>
-                        </td>
-                        <td>
-							<%= link_to user.last_name+user.first_name, admin_user_path(user.id) %>
-                        </td>
-                        <td>
-                            <%= user.email%>
-                        </td>
+                        <td><%= user.id%></td>
+                        <td><%= link_to user.last_name+user.first_name, admin_user_path(user.id) %></td>
+                        <td><%= user.email%></td>
                         <td>
                             <% if user.validation == true %>
 								<%= "有効" %>
