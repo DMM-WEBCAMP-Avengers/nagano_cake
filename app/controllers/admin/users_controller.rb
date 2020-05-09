@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   def top
+    @order_histories = OrderHistory.where(created_at:  Time.zone.now.all_day)
   end
 
   def index

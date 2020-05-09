@@ -1,12 +1,19 @@
 class Destination < ApplicationRecord
 
-belongs_to :user
+    belongs_to :user
 
-with_options presence: true do |d|
-    d.validates :user_id
-    d.validates :addressee
-    d.validates :postal_code
-    d.validates :address
-end
+    with_options presence: true do |d|
+        d.validates :user_id
+        d.validates :addressee
+        d.validates :postal_code
+        d.validates :address
+    end
+
+    def view_destination
+        "#{self.postal_code} #{self.address} #{self.addressee}"
+    end
+
+#日本の郵便番号は必ず7桁らしいです。
+validates :postal_code, format: { with: /\d{7}/}
 
 end

@@ -27,4 +27,3 @@ class Public::CartProductsController < ApplicationController
     params.require(:cart_product).permit(:quantity, :product_id)
   end
 end
-
