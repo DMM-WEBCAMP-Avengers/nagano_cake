@@ -1,4 +1,6 @@
 class OrderHistory < ApplicationRecord
+  attr_accessor :radio_number, :destination_id
+
 	has_many :ordered_products
 	belongs_to :user
 

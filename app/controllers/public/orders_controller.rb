@@ -1,5 +1,6 @@
 class Public::OrdersController < ApplicationController
   def new
+    @order_history = OrderHistory.new
   end
 
   def create
