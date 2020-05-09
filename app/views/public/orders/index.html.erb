@@ -31,7 +31,7 @@
 								<% end %>
 							</td>
 							<td>
-								<%= order.billing %>円
+								<%= money_notation(order.billing*1.1) %>円
 							</td>
 							<td>
 								<% case order.order_status %>
@@ -45,10 +45,10 @@
 					                <%= "発送準備中" %>
 					            <% when "shipped" %>
 					                <%= "発送済み" %>
-					            <% end %>				
+					            <% end %>
 					        </td>
 							<td>
-								<%= link_to "表示する", order_path(current_user.id), class: "btn btn-primary btn-block" %>
+								<%= link_to "表示する", order_path(order.id), class: "btn btn-primary btn-block" %>
 							</td>
 						</tr>
 					<% end %>
