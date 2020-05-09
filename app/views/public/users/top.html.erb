@@ -13,13 +13,13 @@
     </div>
 
     <div class="row">
-    
+
         <% @products.each do |p| %>
             <div class="col-md-3"> 
                         <%= link_to product_path(p.id) do %>
                             <%= attachment_image_tag p.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
                             <br>
-                        <%= p.name %><br>
+                            <%= p.name %><br>
                         <% end %>
                         ¥<%= p.price %>
             </div>
@@ -32,4 +32,3 @@
     </div>
 
 </div>
-
