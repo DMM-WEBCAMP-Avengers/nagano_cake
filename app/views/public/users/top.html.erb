@@ -1,0 +1,35 @@
+<div class="container" >
+    <div class="bg_test">
+        <div class="bg_test-text">
+                <p>ようこそ、NaganoCakeへ！</p>
+                <p>このサイトは、ケーキ販売のECサイトになります。</p>
+                <p>会員でない方も商品の閲覧はできますが、</p>
+                <p>購入には会員登録が必要になります。</p>
+        </div>
+    </div>
+
+    <div>
+        <strong>オススメ商品</strong>
+    </div>
+
+    <div class="row">
+    
+        <% @products.each do |p| %>
+            <div class="col-md-3"> 
+                        <%= link_to product_path(p.id) do %>
+                            <%= attachment_image_tag p.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
+                            <br>
+                        <%= p.name %><br>
+                        <% end %>
+                        ¥<%= p.price %>
+            </div>
+        <% end %>
+
+    </div>
+
+    <div>
+        <%= link_to "もっと見る", products_path  %>
+    </div>
+
+</div>
+
