@@ -34,5 +34,4 @@ class OrderedProduct < ApplicationRecord
             parent_order_history.update(order_status: 4)
         end
     end
-
 end
