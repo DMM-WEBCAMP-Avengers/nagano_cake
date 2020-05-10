@@ -1,15 +1,20 @@
 <div class="container" >
-    <div class="bg_test">
-        <div class="bg_test-text">
-                <p>ようこそ、NaganoCakeへ！</p>
+    <div class="row">
+        <div class="bg_test">
+            <div class="bg_test-text">
+                <%# 5/10店名表記変更統一 %>
+                <p>ようこそ、ながのCAKEへ！</p>
                 <p>このサイトは、ケーキ販売のECサイトになります。</p>
                 <p>会員でない方も商品の閲覧はできますが、</p>
                 <p>購入には会員登録が必要になります。</p>
+            </div>
         </div>
     </div>
 
-    <div>
-        <strong>オススメ商品</strong>
+    <div class="row">
+        <div>
+            <strong>オススメ商品</strong>
+        </div>
     </div>
 
     <div class="row">
@@ -28,7 +33,7 @@
 
     </div>
 
-    <div>
+    <div class="row">
         <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
         <%= link_to "もっと見る", products_path, :style=>"color:black" %>
     </div>
