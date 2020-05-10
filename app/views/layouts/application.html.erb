@@ -19,41 +19,10 @@
         </nav>
         <nav>
           <ul class="nav nav-pills navbar-light navbar-right">
-            <% if user_signed_in? %>
+            <%# URLにadminが入っているかどうかでどちらのサイトなのかを判別 %>
+            <% if request.url.include?('admin') %>
+              <%# 管理者サイト かつ 管理人でログインしている場合 %>
               <% if admin_user_signed_in? %>
-                <li>
-                  ようこそ、<%= current_user.first_name %>さん！
-                </li>
-                <li>
-                  <%= link_to "マイページ", "/user", :style=>"color:black;" %>
-                </li>
-                <li>
-                  <%= link_to "商品一覧", products_path, :style=>"color:black;" %>
-                </li>
-                <li>
-                  <%= link_to "カート", cart_products_path, :style=>"color:black;" %>
-                </li>
-                <li>
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:black;" %>
-                </li>
-              <% else %>
-                <li>
-                  ようこそ、<%= current_user.first_name %>さん！
-                </li>
-                <li>
-                  <%= link_to "マイページ", "/user", :style=>"color:black;" %>
-                </li>
-                <li>
-                  <%= link_to "商品一覧", products_path, :style=>"color:black;" %>
-                </li>
-                <li>
-                  <%= link_to "カート", cart_products_path, :style=>"color:black;" %>
-                </li>
-                <li>
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:black;" %>
-                </li>
-              <% end %>
-            <% elsif admin_user_signed_in? %>
                 <li>
                   <%= link_to "商品一覧", admin_products_path, :style=>"color:black;" %>
                 </li>
@@ -69,7 +38,38 @@
                 <li>
                   <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, :style=>"color:black;" %>
                 </li>
+
+              <%# 管理者サイト かつ 管理人でログインしていない場合 %>
               <% else %>
+                <li>
+                  <%= link_to "ECサイト：商品一覧", products_path, :style=>"color:black;" %>
+                </li>
+                <li>
+                  <%= link_to "ECサイト：新規登録", new_user_registration_path, :style=>"color:black;" %>
+                </li>
+                <li>
+                  <%= link_to "ECサイト：ログイン", new_user_session_path, :style=>"color:black;" %>
+                </li>
+              <% end %>
+            <%# ECサイト かつ 会員でログインしている場合 %>
+            <% elsif user_signed_in? %>
+                <li>
+                  ようこそ、<%= current_user.first_name %>さん！
+                </li>
+                <li>
+                  <%= link_to "マイページ", "/user", :style=>"color:black;" %>
+                </li>
+                <li>
+                  <%= link_to "商品一覧", products_path, :style=>"color:black;" %>
+                </li>
+                <li>
+                  <%= link_to "カート", cart_products_path, :style=>"color:black;" %>
+                </li>
+                <li>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:black;" %>
+                </li>
+            <%# ECサイト かつ 会員でログインしていない場合 %>
+            <% else %>
                 <li>
                   <%= link_to "商品一覧", products_path, :style=>"color:black;" %>
                 </li>
