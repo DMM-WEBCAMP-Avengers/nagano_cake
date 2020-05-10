@@ -14,7 +14,7 @@
       <div class="container">
         <nav class="nav navbar-light navbar-left">
           <%# ロゴのリンク先もECサイトと管理人サイトで分けます。%>
-          <% if request.url.include?('admin)' %>  <%# 今のURLに'admin'が入っているかどうかでどちらのサイトなのかを識別 %>
+          <% if request.url.include?('admin') %>  <%# 今のURLに'admin'が入っているかどうかでどちらのサイトなのかを識別 %>
             <%# 管理人サイトの場合 %>
             <a href="/admin" style="font-size: 40px">
               <%= image_tag 'header-logo.png', :size => '150x60' %>
