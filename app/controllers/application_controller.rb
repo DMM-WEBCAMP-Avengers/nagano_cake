@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :kana_first_name, :kana_last_name, :postal_code, :address, :phone_number])
   end
 
+  def after_sign_in_path_for(resource)
+    case resource
+    when User
+      root_path
+    when AdminUser
+      admin_path
+    end
+  end
+
 end
