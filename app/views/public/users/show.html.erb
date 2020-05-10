@@ -9,7 +9,9 @@
     </div>
     <div class="col-xs-6">
       <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-primary" %>
-      <%= link_to "パスワードを変更する", edit_user_password_path(current_user.id), class: "btn btn-primary" %>
+      <%# edit_user_password_pathはパスワード再設定時の編集画面で、メールのリンク以外ではアクセスできない様なのでnew_user_password_pathに設定。%>
+      <%# UIフロー的にもそれでOKな様子。 %>
+      <%= link_to "パスワードを変更する", new_user_password_path, class: "btn btn-primary" %>
     </div>
   </div>
   <br>
