@@ -19,29 +19,29 @@
   <%# ユーザーの情報をテーブルで表示 %>
   <div class="row">
     <div class="col-xs-6">
-      <table class="table">
+      <table class="table table-bordered">
         <tr>
-          <td>氏名</td>
+          <td class="active">氏名</td>
           <td><%= "#{@user.last_name}　#{@user.first_name}" %></td>
         </tr>
         <tr>
-          <td>カナ</td>
+          <td class="active">カナ</td>
           <td><%= "#{@user.kana_last_name}　#{@user.kana_first_name}" %></td>
         </tr>
         <tr>
-          <td>郵便番号</td>
+          <td class="active">郵便番号</td>
           <td><%= @user.postal_code %></td>
         </tr>
         <tr>
-          <td>住所</td>
+          <td class="active">住所</td>
           <td><%= @user.address %></td>
         </tr>
         <tr>
-          <td>電話番号</td>
+          <td class="active">電話番号</td>
           <td><%= @user.phone_number %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
+          <td class="active">メールアドレス</td>
           <td><%= @user.email %></td>
         </tr>
       </table>
