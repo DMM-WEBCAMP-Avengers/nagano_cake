@@ -3,25 +3,29 @@ class Admin::OrdersController < ApplicationController
   include ApplicationHelper
 
   def index
-    #ページネーションで飛んできた時は@pathをparams[:prev_path]から取り、他のページから遷移してきた時はrequest.refererから@pathを取得。
-    #params[:prev_path]がハッシュだからなのか、普通に@path = params[:prev_path]とするとunpermitted_paramsとしてエラーが出る。ひとまず.permit!を付けて解決。
-    params[:prev_path].nil? ? @path = Rails.application.routes.recognize_path(request.referer) : @path = params[:prev_path].permit!
+    #ページネーションで飛んできた時は@prev_pathをparams[:prev_path]から取り、他のページから遷移してきた時はrequest.refererから@prev_pathを取得。
+    params[:prev_path].nil? ? @prev_path = Rails.application.routes.recognize_path(request.referer) : @prev_path = params[:prev_path].permit!
+    #↑params[:prev_path]がハッシュだからなのか、普通に@prev_path = params[:prev_path]とするとunpermitted_paramsとしてエラーが出る。ひとまず.permit!を付けて解決。
 
-    #@pathの中身で遷移元のページを判断
-    if @path[:controller] == "admin/users"
-      case @path[:action]
-        when "top"
-          #.all_dayでその日の始めから終わりまで、という検索ができるとのこと。
-          #order(created_at: "DESC")で日付降順に
-          @order_histories = OrderHistory.where(created_at: Time.zone.today.all_day).order(created_at: "DESC").page(params[:page]).per(10)
-        when "show"
-          #ページネーションで飛んできた時はparams[:user_id]から以前のuser_idを使い回す。
-          @user_id = params[:user_id]
-          @order_histories = OrderHistory.where(user_id: params[:user_id]).order(created_at: "DESC").page(params[:page]).per(10)
-      end
-    else
-      #ヘッダーから飛んできた場合の処理に該当。全ての履歴を取ってくる。
+    #headerから飛んできた場合
+    if params[:is_from_header].to_i == 1
       @order_histories = OrderHistory.order(created_at: "DESC").page(params[:page]).per(10)
+
+    #header以外から飛んできた場合
+    else
+      #@prev_pathの中身で遷移元のページを判断
+      if @prev_path[:controller] == "admin/users"
+        case @prev_path[:action]
+          when "top"
+            #.all_dayでその日の始めから終わりまでのデータを取得。
+            #order(created_at: "DESC")で日付降順に
+            @order_histories = OrderHistory.where(created_at: Time.zone.today.all_day).order(created_at: "DESC").page(params[:page]).per(10)
+          when "show"
+            #ページネーションで飛んできた時はparams[:user_id]から以前のuser_idを使い回す。
+            @user_id = params[:user_id]
+            @order_histories = OrderHistory.where(user_id: params[:user_id]).order(created_at: "DESC").page(params[:page]).per(10)
+        end
+      end
     end
   end
 

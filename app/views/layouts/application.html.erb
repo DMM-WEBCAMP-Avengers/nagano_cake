@@ -39,7 +39,7 @@
                   <%= link_to "会員一覧", admin_users_path, :style=>"color:black;" %>
                 </li>
                 <li>
-                  <%= link_to "注文履歴一覧", admin_orders_path, :style=>"color:black;" %>
+                  <%= link_to "注文履歴一覧", admin_orders_path(is_from_header: 1), :style=>"color:black;" %>
                 </li>
                 <li>
                   <%= link_to "ジャンル一覧", admin_genres_path, :style=>"color:black;" %>
