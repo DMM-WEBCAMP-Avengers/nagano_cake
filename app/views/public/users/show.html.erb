@@ -9,7 +9,9 @@
     </div>
     <div class="col-xs-6">
       <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-primary" %>
-      <%= link_to "パスワードを変更する", edit_user_password_path(current_user.id), class: "btn btn-primary" %>
+      <%# edit_user_password_pathはパスワード再設定時の編集画面で、メールのリンク以外ではアクセスできない様なのでnew_user_password_pathに設定。%>
+      <%# UIフロー的にもそれでOKな様子。 %>
+      <%= link_to "パスワードを変更する", new_user_password_path, class: "btn btn-primary" %>
     </div>
   </div>
   <br>
@@ -17,29 +19,29 @@
   <%# ユーザーの情報をテーブルで表示 %>
   <div class="row">
     <div class="col-xs-6">
-      <table class="table">
+      <table class="table table-bordered">
         <tr>
-          <td>氏名</td>
+          <td class="active">氏名</td>
           <td><%= "#{@user.last_name}　#{@user.first_name}" %></td>
         </tr>
         <tr>
-          <td>カナ</td>
+          <td class="active">カナ</td>
           <td><%= "#{@user.kana_last_name}　#{@user.kana_first_name}" %></td>
         </tr>
         <tr>
-          <td>郵便番号</td>
+          <td class="active">郵便番号</td>
           <td><%= @user.postal_code %></td>
         </tr>
         <tr>
-          <td>住所</td>
+          <td class="active">住所</td>
           <td><%= @user.address %></td>
         </tr>
         <tr>
-          <td>電話番号</td>
+          <td class="active">電話番号</td>
           <td><%= @user.phone_number %></td>
         </tr>
         <tr>
-          <td>メールアドレス</td>
+          <td class="active">メールアドレス</td>
           <td><%= @user.email %></td>
         </tr>
       </table>
