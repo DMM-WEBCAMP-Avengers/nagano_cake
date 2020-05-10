@@ -13,13 +13,22 @@
     <header id="header" class="navbar navbar-light bg-light">
       <div class="container">
         <nav class="nav navbar-light navbar-left">
-          <a href="/" style="font-size: 40px">
-            <%= image_tag 'header-logo.png', :size => '150x60' %>
-          </a>
+          <%# ロゴのリンク先もECサイトと管理人サイトで分けます。%>
+          <% if request.url.include?('admin)' %>  <%# 今のURLに'admin'が入っているかどうかでどちらのサイトなのかを識別 %>
+            <%# 管理人サイトの場合 %>
+            <a href="/admin" style="font-size: 40px">
+              <%= image_tag 'header-logo.png', :size => '150x60' %>
+            </a>
+          <% else %>
+            <%# ECサイトの場合 %>
+            <a href="/" style="font-size: 40px">
+              <%= image_tag 'header-logo.png', :size => '150x60' %>
+            </a>
+          <% end %>
         </nav>
         <nav>
           <ul class="nav nav-pills navbar-light navbar-right">
-            <%# URLにadminが入っているかどうかでどちらのサイトなのかを判別 %>
+            <%# 今のURLにadminが入っているかどうかでどちらのサイトなのかを識別 %>
             <% if request.url.include?('admin') %>
               <%# 管理者サイト かつ 管理人でログインしている場合 %>
               <% if admin_user_signed_in? %>
@@ -39,7 +48,7 @@
                   <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, :style=>"color:black;" %>
                 </li>
 
-              <%# 管理者サイト かつ 管理人でログインしていない場合 %>
+              <%# 管理者サイト かつ 管理人でログインしていない場合(adminのログイン画面のみ) %>
               <% else %>
                 <li>
                   <%= link_to "ECサイト：商品一覧", products_path, :style=>"color:black;" %>
