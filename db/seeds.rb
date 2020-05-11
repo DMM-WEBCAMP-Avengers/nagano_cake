@@ -150,7 +150,7 @@ end
     billing +=  ordered_product.price * ordered_product.quantity  * 1.1
   end
 
-  date = Faker::Date.between(from:2.month.ago, to: 2.month.from_now)
+  date = Faker::Time.between(from:2.month.ago, to: 2.month.from_now)
   order_history.update!(
     billing: billing,
     created_at: date,
@@ -201,7 +201,7 @@ end
     billing +=  ordered_product.price * ordered_product.quantity  * 1.1
   end
 
-  date = Faker::Date.between(from:2.month.ago, to: 2.month.from_now)
+  date = Faker::Time.between(from:2.month.ago, to: 2.month.from_now)
   order_history.update!(
     billing: billing,
     created_at: date,
