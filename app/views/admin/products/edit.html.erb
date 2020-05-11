@@ -1,2 +1,26 @@
-<h1>Admin::Products#edit</h1>
-<p>Find me in app/views/admin/products/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4>商品編集</h4>
+  </div>
+
+  <div class="row">
+    <%= form_for(@product,url: admin_product_path(@product.id)) do |f| %>    <%# urlを追加してみたけどerror%>
+      <div class="col-xs-4">
+        <%= attachment_image_tag @product, :image, :fill, 400, 400,format: 'jpg', fallback: "logo.png", size:'245x245' %><%# defaultで画像を用意する%>　<%# 5/10formatを'jpg'、sizeを'245x245'に変更 %>
+        <%= f.attachment_field :image %>
+      </div>
+
+      <div class="col-xs-8">
+        <p>商品名 <%= f.text_field :name %> </p>
+        <p>商品説明 <%= f.text_area :introduction, size: 25 %> </p>
+        <p>ジャンル <%= f.collection_select :genre_id, Genre.all, :id, :name %> </p>  <%# collection_select :genre_idはProdubctMODEL、:id, :name はgenreモデル %>
+        <p>税抜価格 <%= f.text_field :price %>円 </p> <%# error %>
+        <p>販売ステータス <%= f.select :validation, {
+          "販売中": true,
+          "売り切れ": false
+        } %> </p> <%# select %>
+        <%= f.submit "変更を保存",class: "btn btn-primary" %>
+      </div> <%# 5/10追加 %>
+    <% end %>
+</div>
+

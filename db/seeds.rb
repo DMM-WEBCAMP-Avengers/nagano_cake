@@ -21,9 +21,9 @@ Faker::Config.locale = :ja
   last_name = last_names[last_name_random]
   kana_first_name = kana_first_names[first_name_random]
   kana_last_name = kana_last_names[last_name_random]
-  postal_code = Faker::Address.postcode.to_s
+  postal_code = Faker::Address.postcode.to_s.delete("-")
   address = Faker::Address.state + Faker::Address.city
-  phone_number = Faker::PhoneNumber.cell_phone
+  phone_number = Faker::PhoneNumber.cell_phone.delete("-")
   email = "example#{n}@gmail.com"
 
   user = User.create!(
@@ -78,8 +78,8 @@ end
   first_name = first_names[first_name_random]
   last_name = last_names[last_name_random]
 
-  addressee = last_name + first_name
-  postal_code = Faker::Address.postcode.to_s
+  addressee = "#{last_name}　#{first_name}"
+  postal_code = Faker::Address.postcode.to_s.delete("-")
   address = Faker::Address.state + Faker::Address.city
 
   Destination.create!(
@@ -157,6 +157,56 @@ end
   )
 end
 
+#動作確認用に最初のユーザーに履歴を30件追加
+30.times do |n|
+  user = User.find(1)
+  destination_random = rand(0..1)
+  destination = user.destinations[destination_random]
+
+  user_id = user.id
+  addressee = destination.addressee
+  postal_code = destination.postal_code
+  address = destination.address
+  payment_option = rand(1..2)
+  billing = 800
+
+  order_history = OrderHistory.create!(
+    user_id: user_id,
+    addressee: addressee,
+    postal_code: postal_code,
+    address: address,
+    payment_option: payment_option,
+    billing: billing
+  )
+
+  rand(1..3).times do |i|
+    product_id = rand(1..Product.all.length)
+    order_history_id = order_history.id
+    price = Product.find(product_id).price
+    quantity = rand(1..5)
+
+    OrderedProduct.create!(
+      product_id: product_id,
+      order_history_id: order_history_id,
+      price: price,
+      quantity: quantity
+    )
+  end
+
+  ordered_products = OrderedProduct.where(order_history_id: order_history.id)
+  billing = order_history.billing
+
+  ordered_products.each do |ordered_product|
+    billing +=  ordered_product.price * ordered_product.quantity  * 1.1
+  end
+
+  date = Faker::Date.between(from:2.month.ago, to: 2.month.from_now)
+  order_history.update!(
+    billing: billing,
+    created_at: date,
+    updated_at: date
+  )
+end
 
 # 7.cart_products
 # idが奇数のユーザーだけカート内に商品がある状態に

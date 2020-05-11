@@ -1,2 +1,117 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+
+	<h1>注文履歴詳細</h1>
+
+	<div class="row">
+		<div class="col-xs-6">
+			<h4>注文情報</h4>
+			<table class="table table-hover table-bordered">
+				<tbody>
+					<tr>
+						<td>注文日</td>
+						<td>
+							<%= @order_history.created_at.strftime('%Y/%m/%d')  %>
+						</td>
+					</tr>
+					<tr>
+						<td>配送先</td>
+						<td>
+							<p><%= @order_history.postal_code %></p>
+							<p><%= @order_history.address %></p>
+							<p><%= @order_history.addressee %></p>
+						</td>
+					</tr>
+					<tr>
+						<td>支払方法</td>
+						<td>
+							<% case @order_history.payment_option %>
+							<% when "bank_transfer" %>
+								<%= "銀行振込" %>
+							<% when "credit_card" %>
+								<%= "クレジットカード" %>
+							<% end %>
+						</td>
+					</tr>
+					<tr>
+						<td>ステータス</td>
+						<td>
+							<% case @order_history.order_status %>
+							<% when "unpaid" %>
+								<%= "入金待ち" %>
+							<% when "paid" %>
+								<%= "入金確認" %>
+							<% when "working" %>
+								<%= "制作中" %>
+							<% when "ready" %>
+								<%= "発送準備中" %>
+							<% when "shipped" %>
+								<%= "発送済み" %>
+							<% end %>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-xs-4">
+			<h4>請求情報</h4>
+			<table class="table table-hover table-bordered">
+				<tbody>
+					<tr>
+						<td>商品合計</td>
+						<td>
+							<%= money_notation(amount(@ordered_products)*1.1) %>円
+						</td>
+					</tr>
+					<tr>
+						<td>配送料</td>
+						<td>
+							<%= @order_history.postage %>円
+						</td>
+					</tr>
+					<tr>
+						<td>ご請求金額</td>
+						<td>
+							<%= money_notation(@order_history.billing) %>円
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8">
+			<h4>注文内容</h4>
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>商品</th>
+						<th>単価（税込）</th>
+						<th>個数</th>
+						<th>小計</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @ordered_products.each do |op| %>
+						<tr>
+							<td>
+								<%= op.product.name %>
+							</td>
+							<td>
+								<%= money_notation(op.price*1.1) %>円
+							</td>
+							<td>
+								<%= op.quantity %>
+							</td>
+							<td>
+								<%= money_notation(op.subtotal*1.1) %>円
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

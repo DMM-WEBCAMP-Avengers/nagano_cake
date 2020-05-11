@@ -1,2 +1,61 @@
-<h1>Admin::Products#index</h1>
-<p>Find me in app/views/admin/products/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<h1>商品一覧</h1>
+			<div class="text-right">
+				<%= link_to "+", new_admin_product_path, class: " btn btn-default", style: "border-radius: 50%" %>	
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<table class="table table-hover table-resposive">
+				<thead>
+					<tr class="active">
+						<th>商品ID</th>
+						<th>商品名</th>
+						<th>税込価格</th>
+						<th>ジャンル</th>
+						<th>ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @products.each do |product| %>
+						<tr>
+							<td>
+								<%= product.id %>
+							</td>
+							<td>
+								<%= link_to product.name, admin_product_path(product.id) %>
+							</td>
+							<td>
+								<%# 5/7 money_notationを追加 %>
+								<%=  money_notation(product.price*1.1) %>
+							</td>
+							<td>
+								<%= product.genre.name %>
+							</td>
+							<td>
+								<%# 5/7 case文からif文に変更→スッキリコードに変更 %>
+								<% if product.validation == true %>
+									<%= "販売中" %>
+								<% else %>
+									<%= "売り切れ" %>
+								<% end %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="text-center">
+				<%= paginate @products %>
+			</div>
+		</div>
+	</div>
+</div>

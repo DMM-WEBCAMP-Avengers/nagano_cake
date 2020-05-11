@@ -15,3 +15,22 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.bg_test-text {
+    display:  inline-block;                         /* インラインブロックにする */
+    padding: 30px 30px;                             /* 余白指定 */
+    background-color: rgba(82,72,53,0.5);
+}
+
+.bg_test {
+    text-align:  center;    /* 文字中央寄せ */
+    padding:  150px;        /* 余白指定 */
+    background-image: url(takeout.jpg);    /* 背景画像5/9変更 */
+    background-size: cover;    /* 背景サイズ5/9変更*/
+    background-position: center;
+    color: white;
+}
+
+.table-noborder>tbody>tr>td{
+  border-style: none;
+}

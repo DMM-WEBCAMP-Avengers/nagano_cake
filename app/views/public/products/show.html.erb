@@ -1,2 +1,20 @@
-<h1>Public::Products#show</h1>
-<p>Find me in app/views/public/products/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 ">
+      <%# 5/10 fill:400,format:jpg,size:245に変更 %>
+      <%= attachment_image_tag @product, :image, :fill, 400, 400, format: 'jpg', fallback: "logo.png", size: 245 %><br>
+    </div>
+        <div class="col-xs-8 ">
+            <div>
+                <h1><%= @product.name %></h1><br>
+                <h3><%= @product.introduction %></h3><br>
+                <h2>¥<%= @product.price %>（税込み）</h2><br>
+            </div>
+            <%= form_for(@cart_product, url: cart_products_path) do |f| %> <%# ここにurlをいれるandカートプロダクトコントローラのcreateアクションをいじる %>
+             <%= f.hidden_field :product_id, value: @product.id %> <%# フォームの見た目上quantityしか渡せないが、hiddenを使うとViewに表示させずに他の値を渡せる。今回は何の何の商品が何個(quantity)欲しいかを教えてあげたいので、product_idカラムに入る@product.idと言う値を追加している。@product.idは↑の３つ。すなわちproductモデルのPK %>
+             <%= f.number_field :quantity, placeholder: "個数選択",class: 'btn btn-default'  %> <%# "個数選択"と、薄く表記がされる数値以外を受け付けないフォーム生成 %>
+             <%= f.submit 'カートにいれる',class: 'btn btn-primary' %>
+            <% end %>
+        </div>
+  </div>
+</div>
