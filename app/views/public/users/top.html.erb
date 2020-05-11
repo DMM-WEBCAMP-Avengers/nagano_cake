@@ -23,7 +23,8 @@
             <div class="col-md-3">
                         <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
                         <%= link_to product_path(p.id), :style=>"color:black" do %>
-                            <%= attachment_image_tag p.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
+                        <%# 5/10 "p.image"の"image"を削除,fillを400,formatを'jpeg'に変更 %>
+                            <%= attachment_image_tag p, :image, :fill, 400, 400, format: 'jpg', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
                             <br>
                             <%= p.name %><br>
                         <% end %>
