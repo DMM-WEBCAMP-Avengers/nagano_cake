@@ -1,4 +1,5 @@
 class Public::CartProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:create] #device機能を利用した時に使えるやつ。オプションはonlyとexceptがある。
   def create
     @cart_product = CartProduct.new(cart_product_params)
     @cart_product.user_id = current_user.id

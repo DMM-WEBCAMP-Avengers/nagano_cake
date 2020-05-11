@@ -17,19 +17,18 @@
 @import "bootstrap";
 
 .bg_test-text {
-    border:  solid 1px;                             /* 枠線指定 */
     display:  inline-block;                         /* インラインブロックにする */
     padding: 30px 30px;                             /* 余白指定 */
-    background-color: white;     /* 背景色指定 */
+    background-color: rgba(82,72,53,0.5);
 }
 
 .bg_test {
     text-align:  center;    /* 文字中央寄せ */
     padding:  150px;        /* 余白指定 */
-    border: solid 2px;      /* 枠線指定 */
-    background-image: url(logo.png);    /* 背景画像指定 */
-    background-size: 160px;
+    background-image: url(takeout.jpg);    /* 背景画像5/9変更 */
+    background-size: cover;    /* 背景サイズ5/9変更*/
     background-position: center;
+    color: white;
 }
 
 .table-noborder>tbody>tr>td{

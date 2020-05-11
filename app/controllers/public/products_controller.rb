@@ -6,7 +6,6 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    # @cart_product = Cart_product.new キャメルケースを利用↓↓
-    @cart_product = CartProduct.new
+    @cart_product = CartProduct.new #Cart_product.new キャメルケースを利用
   end
 end

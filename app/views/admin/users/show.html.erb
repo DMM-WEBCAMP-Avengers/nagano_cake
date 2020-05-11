@@ -1,39 +1,45 @@
 <div class='container'>
-
     <div class='row'>
-        <h3> <%= @users.first_name%> <%= @users.last_name%> さんの会員詳細</h3>
-
+        <h3> <%= @user.last_name%> <%= @user.first_name%> さんの会員詳細</h3>
         <div class="col-xs-12">
             <table>
                 <thead></thead>
                 <tbody>
                     <tr>
                         <td> <h5>顧客ID</h5> </td>
-                        <td> <%= @users.id %> <%= @users.validation%> </td>
+                        <td> <%= @user.id %>
+                            <div class="btn btn-default" style="background-color: aqua;">
+                                <% if @user.validation == true %>
+                                    有効
+                                <% else %>
+                                    退会済み
+                                <% end %>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td> <h5>氏名</h5>  </td>
-                        <td> <%= @users.first_name%> <%= @users.last_name%> </td>
+                        <td> <%= "#{@user.last_name}　#{@user.first_name}" %> </td>
                     </tr>
                     <tr>
                         <td> <h5>フリガナ</h5>  </td>
-                        <td> <%= @users.kana_first_name%> <%= @users.kana_last_name%> </td>
+                        <td> <%= "#{@user.kana_last_name}　#{@user.kana_first_name}" %> </td>
                     </tr>
                     <tr>
                         <td> <h5>郵便番号</h5>  </td>
-                        <td> <%= @users.postal_code%> </td>
+                        <td> <%= @user.postal_code%> </td>
                     </tr>
                     <tr>
                         <td> <h5>住所</h5>  </td>
-                        <td> <%= @users.address %> </td>
+                        <td> <%= @user.address %> </td>
                     </tr>
                     <tr>
                         <td> <h5>電話番号</h5> </td>
-                        <td> <%= @users.phone_number%> </td>
+                        <td> <%= @user.phone_number%> </td>
                     </tr>
                     <tr>
                         <td> <h5>メールアドレス</h5>  </td>
-                        <td> <%= @users.email%> </td>
+                        <td> <%= @user.email%> </td>
                     </tr>
                 </tbody>
                 <tfoot></tfoot>
@@ -43,9 +49,9 @@
     </div>
 
     <div class='row'>
-        <%= link_to '編集する', edit_admin_user_path(@users.id), class: 'btn btn-default' %>
+        <%= link_to '編集する', edit_admin_user_path(@user.id), class: 'btn btn-default' %>
 
-        <%= link_to '注文履歴一覧', admin_orders_path(user_id: @users.id), class: 'btn btn-default' %>
+        <%= link_to '注文履歴一覧', admin_orders_path(@user.id), class: 'btn btn-default' %>
     </div>
 
 </div>

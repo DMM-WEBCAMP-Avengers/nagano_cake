@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
+  #ログイン状態で:new, :createを実行するために必要。(デフォルトでは、ログインしていないことが求められている。)
+  #そして"Send me reset password instructions"を押すとエラーが出るが、原因はよくわからない。ひとまずこれでOKとしたいです。
+  prepend_before_action :require_no_authentication, except: [:new, :create]
+
   # GET /resource/password/new
   # def new
   #   super

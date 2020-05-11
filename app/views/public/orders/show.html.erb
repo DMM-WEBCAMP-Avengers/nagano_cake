@@ -1,5 +1,5 @@
 <div class="container">
-	
+
 	<h1>注文履歴詳細</h1>
 
 	<div class="row">
@@ -60,7 +60,7 @@
 					<tr>
 						<td>商品合計</td>
 						<td>
-							<%= @order_history.billing-@order_history.postage %>円
+							<%= money_notation(amount(@ordered_products)*1.1) %>円
 						</td>
 					</tr>
 					<tr>
@@ -72,7 +72,7 @@
 					<tr>
 						<td>ご請求金額</td>
 						<td>
-							<%= @order_history.billing %>円
+							<%= money_notation(@order_history.billing) %>円
 						</td>
 					</tr>
 				</tbody>
@@ -99,13 +99,13 @@
 								<%= op.product.name %>
 							</td>
 							<td>
-								<%= op.price %>
+								<%= money_notation(op.price*1.1) %>円
 							</td>
 							<td>
 								<%= op.quantity %>
 							</td>
 							<td>
-								<%= op.price*op.quantity %>円
+								<%= money_notation(op.subtotal*1.1) %>円
 							</td>
 						</tr>
 					<% end %>
