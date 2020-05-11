@@ -1,2 +1,74 @@
-<h1>Public::CartProducts#index</h1>
-<p>Find me in app/views/public/cart_products/index.html.erb</p>
+<div class="container">
+    <div class="row">
+        <div class="ec-cart-index-main">
+            <h2 class="ec-cart-index-title">ショッピングカート</h2>
+            <!-- success-massage -->
+            <% if flash[:notice] %>
+                <p class="success-message"><%= flash[:notice] %></p>
+            <% end %>
+            <div class="btn-box text-right">
+                <%= link_to "カートを空にする", destroy_all_cart_products_path, method: :delete, class:"btn btn-danger" %>
+            </div>
+            <!-- カート商品一覧 -->
+            <div class="cart-item-table row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="active">商品名</th>
+                            <th class="active text-right">単価（税込）</th>
+                            <th class="active text-right">数量</th>
+                            <th class="active text-right">小計</th>
+                            <th class="active"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @cart_products.each do |cart_product| %>
+                            <tr>
+                                <td>
+                                    <%= attachment_image_tag cart_product.product.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'60x60' %>
+                                    <%= cart_product.product.name %>
+                                </td>
+                                <td class="text-right">
+                                    <%= (cart_product.product.price*1.1).round %>円
+                                </td>
+                                <td class="text-right">
+                                    <%= form_for(cart_product) do |f| %>
+                                        <div class="row">
+                                            <%= f.number_field :quantity, min:1,class: "col-6" %>
+                                            <%= f.submit "変更", class: "btn btn-sm btn-outline-danger offset-1 col-4" %>
+                                        </div>
+                                    <% end %>
+                                </td>
+                                <td class="text-right">
+                                    <%= (cart_product.product.price*cart_product.quantity*1.1).round %>円
+                                </td>
+                                <td class="text-right">
+                                    <%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 合計金額 -->
+            <div class="cart-total-table row">
+                <div class="col-xs-8 return-shopping-btn-wrapper"><%= link_to "買い物を続ける", root_path, class:"btn btn-default" %></div>
+                <div class="col-xs-4">
+                    <table class="table">
+                        <tbody>
+                            <th class="active">合計金額</th>
+                            <td class="text-right"> <%= @cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum %>円 </td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <!-- 商品ない場合リンクを表示しない -->
+        <% if current_user.cart_products.present? %>
+        <div class="create-order-btn-wrapper col-xs-4 col-xs-offset-4">
+            <%= link_to "情報入力に進む", new_order_path, class:"btn btn-primary form-control" %>
+        </div>
+        <% end %>
+        </div>
+
+    </div>
+</div>
