@@ -65,7 +65,8 @@ genres = ["ケーキ", "プリン", "フィナンシェ", "キャンディ"]
       name: name,
       introduction: "説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。",
       price: price,
-      validation: true
+      validation: true,
+      image: File.open("./app/assets/images/#{name}.jpg")
     )
   end
 end
