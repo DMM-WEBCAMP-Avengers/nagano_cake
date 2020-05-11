@@ -21,6 +21,11 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
+    user = current_user
+    user.update(validation: false)
+    #update後にログアウトしたい。
+    sign_out user
+    redirect_to root_path, success: "退会処理が完了しました。"
   end
 
   def cancel
