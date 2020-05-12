@@ -25,11 +25,11 @@
                         <% @cart_products.each do |cart_product| %>
                             <tr>
                                 <td>
-                                    <%= attachment_image_tag cart_product.product.image, :profile_image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'60x60' %>
+                                    <%= attachment_image_tag cart_product.product, :image, :fill, 400, 400,format: 'jpg', fallback: "logo.png", size:'60x60' %>
                                     <%= cart_product.product.name %>
                                 </td>
                                 <td class="text-right">
-                                    <%= (cart_product.product.price*1.1).round %>円
+                                    <%= money_notation(cart_product.product.price*1.1) %>円
                                 </td>
                                 <td class="text-right">
                                     <%= form_for(cart_product) do |f| %>
@@ -40,7 +40,7 @@
                                     <% end %>
                                 </td>
                                 <td class="text-right">
-                                    <%= (cart_product.product.price*cart_product.quantity*1.1).round %>円
+                                    <%= money_notation(cart_product.product.price*cart_product.quantity*1.1) %>円
                                 </td>
                                 <td class="text-right">
                                     <%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
@@ -57,7 +57,7 @@
                     <table class="table">
                         <tbody>
                             <th class="active">合計金額</th>
-                            <td class="text-right"> <%= @cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum %>円 </td>
+                            <td class="text-right"> <%= money_notation(@cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum) %>円 </td>
                         </tbody>
                     </table>
                 </div>

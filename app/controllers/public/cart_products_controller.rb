@@ -18,33 +18,27 @@ class Public::CartProductsController < ApplicationController
   def update
     @cart_products = CartProduct.find(params[:id])
     if @cart_products.update(cart_product_params)
-      flash[:notice] = '個数を変更しました'
-      redirect_to cart_products_path
+      redirect_to cart_products_path,success: '個数を変更しました'
     else
-      flash[:notice] = 'error'
-      render :index
+      render :index, danger: "個数の変更に失敗しました。"
     end
   end
 
   def destroy_all
     user = User.find(current_user.id)
     if user.cart_products.destroy_all
-      flash[:notice] = "カート内の商品を全て削除しました。"
-      redirect_to cart_products_path
+      redirect_to cart_products_path,success: 'カート内の商品を全て削除しました。'
     else
-      flash[:notice] = 'error'
-      render :index
+      render :index, danger: "カート内の商品を削除出来ませんでした。"
     end
   end
 
   def destroy
     @cart_products = CartProduct.find(params[:id])
     if @cart_products.destroy
-      flash[:notice] = "商品の削除が完了しました。"
-    redirect_to cart_products_path
+    redirect_to cart_products_path,success: '商品の削除が完了しました。'
     else
-      flash[:notice] = 'error'
-      render :index
+      render :index, danger: "商品の削除が出来ませんでした"
     end
   end
 
