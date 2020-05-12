@@ -9,7 +9,7 @@
       <div>
         <%= link_to product_path(product.id) do %>
         <%# 5/10 @productの@を削除,fill:400,size:150に変更 %>
-        <%= attachment_image_tag product, :image, :fill, 400, 400, format: 'jpeg', fallback: "logo.png", size: 150 %><br>
+        <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "logo.png", size: 150 %><br>
         <% end %>
         <%= product.name %><br>
         <%= product.price %>円<br>
