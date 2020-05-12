@@ -1,29 +1,55 @@
-<div class="container">
-    <h1>商品新規登録</h1>
-
-    <%= form_for(@product, url:admin_products_path) do |f| %>
-        <%= render 'layouts/error_messages', model: f.object %>
-        <div class="col-xs-4">
-            <%= f.attachment_field :image, placeholder:"商品画像" %>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-0">
+                <h2>商品新規登録</h2>
+            </div>
         </div>
-
-        <div class="col-xs-8">
-            <label>商品名</label>
-            <%= f.text_field :name %> <br>
-
-            <label>商品説明</label>
-            <%= f.text_area :introduction %> <br>
-
-            <label>ジャンル</label>
-            <%= f.number_field :genre %> <br>
-
-            <label>税抜価格</label>
-            <%= f.text_field :price %> 円 <br>
-
-            <label>販売ステータス</label>
-            <%= f.number_field :validation %> <br>
-
-            <%= f.submit "新規登録"  %>
+        <!--商品画像画像登録-->
+        <div class="row">
+            <div class="col-xs-2 col-xs-offset-0">
+                <div class="img-fluid">
+                <%= attachment_image_tag @product, :image, :fill, 400, 400,format: 'jpg', fallback: "logo.png", size:'300x300' %>
+                <%= form_for(@product, url:admin_products_path) do |f| %>
+                    <%= render 'layouts/error_messages', model: f.object %>
+                    <%= f.attachment_field :image, placeholder:"商品画像" %>
+                </div>
+            </div>
+            <!--商品項目入力欄-->
+            <form class="form-horizontal">
+                <div class="col-xs-6 col-xs-offset-4">
+                        <div class="form-group form-group-lg" >
+                            <%= f.label :name, '商品名' %>
+                            <%= f.text_field :name %> 
+                        </div>
+                        <div class="form-group">
+                            <%= f.label :introduction, '商品説明' %>
+                            <%= f.text_area :introduction %>
+                        </div>
+                        <div class="form-group">
+                            <%= f.label :genre_id, 'ジャンル' %>
+                            <%= f.collection_select :genre_id, Genre.all, :id, :name %> 
+                        </div>
+                        <div class="form-group">
+                            <%= f.label :price, '税抜価格' %>
+                            <%= f.text_field :price %>円 
+                        </div>
+                        <div class="form-group">
+                            <%= f.label :validation, '販売ステータス' %>
+                            <%= f.select :validation, {
+                                "販売中": true,
+                                "売り切れ": false
+                            } %> 
+                        </div>
+                        <div class="col-xs-2 col-xs-offset-6">
+                            <div class="btn btn-default" role="button">
+                                <%= f.submit "新規登録" , class: "btn btn-primary"  %>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </form>
         </div>
-    <% end %>
+        
+    </div>
 </div>
