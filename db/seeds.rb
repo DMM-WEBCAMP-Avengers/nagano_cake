@@ -65,7 +65,8 @@ genres = ["ケーキ", "プリン", "フィナンシェ", "キャンディ"]
       name: name,
       introduction: "説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。",
       price: price,
-      validation: true
+      validation: true,
+      image: File.open("./app/assets/images/#{name}.jpg")
     )
   end
 end
@@ -149,7 +150,7 @@ end
     billing +=  ordered_product.price * ordered_product.quantity  * 1.1
   end
 
-  date = Faker::Date.between(from:2.month.ago, to: 2.month.from_now)
+  date = Faker::Time.between(from:2.month.ago, to: 2.month.from_now)
   order_history.update!(
     billing: billing,
     created_at: date,
@@ -200,7 +201,7 @@ end
     billing +=  ordered_product.price * ordered_product.quantity  * 1.1
   end
 
-  date = Faker::Date.between(from:2.month.ago, to: 2.month.from_now)
+  date = Faker::Time.between(from:2.month.ago, to: 2.month.from_now)
   order_history.update!(
     billing: billing,
     created_at: date,
