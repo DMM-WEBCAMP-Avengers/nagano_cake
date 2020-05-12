@@ -1,0 +1,14 @@
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th class="active text-center">ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% genres.each do |genre| %>
+      <tr>
+        <td><%= genre.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
