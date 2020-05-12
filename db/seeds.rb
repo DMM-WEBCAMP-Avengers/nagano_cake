@@ -59,13 +59,16 @@ genres = ["ケーキ", "プリン", "フィナンシェ", "キャンディ"]
   4.times do |i|
     name = kinds[n] + genres[i]
     price = (n + 1) * 100
+    validations = [true, false]
+    validation_random = rand(0..1)
+    validation = validations[validation_random]
 
     Product.create!(
       genre_id: (i + 1),
       name: name,
       introduction: "説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。説明です。",
       price: price,
-      validation: true,
+      validation: validation,
       image: File.open("./app/assets/images/#{name}.jpg")
     )
   end
