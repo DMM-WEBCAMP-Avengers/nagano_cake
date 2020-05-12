@@ -1,13 +1,14 @@
 class Public::CartProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:create] #device機能を利用した時に使えるやつ。オプションはonlyとexceptがある。
+  before_action :authenticate_user!
+  #device機能を利用した時に使えるやつ。オプションはonlyとexceptがある。
   def create
     @cart_product = CartProduct.new(cart_product_params)
     @cart_product.user_id = current_user.id
     if @cart_product.save
-       redirect_to cart_products_path,success: '商品をカートに追加しました.'
+      redirect_to cart_products_path,success: '商品をカートに追加しました.'
     else
-       @product = Product.find(@cart_product.product_id)
-       render 'public/products/show' #publicディレクトリのproductsフォルダのshowページへrender。(renderするとViewが乱れるけどOK)
+      @product = Product.find(@cart_product.product_id)
+      render 'public/products/show' #publicディレクトリのproductsフォルダのshowページへrender。(renderするとViewが乱れるけどOK)
     end
   end
 

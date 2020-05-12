@@ -1,4 +1,6 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_admin_user!
+
   def top
     @order_histories = OrderHistory.where(created_at:  Time.zone.now.all_day)
   end
@@ -19,7 +21,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-       redirect_to admin_user_path(@user.id)
+      redirect_to admin_user_path(@user.id)
     else
       render action: :edit
     end
