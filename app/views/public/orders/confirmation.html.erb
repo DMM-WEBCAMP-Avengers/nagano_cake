@@ -1,2 +1,106 @@
-<h1>Public::Orders#confirmation</h1>
-<p>Find me in app/views/public/orders/confirmation.html.erb</p>
+<div class="container-fluid">
+    <div class=row>
+        <div class="col-xs-12 col-xs-offset-1">
+            <h1 style="width:360px">注文情報確認</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-1">
+            <!--購入商品テーブル-->
+            <table class="table table-hover table-bordered" style="font-size: 12pt; line-height: 100%; ">
+                <thead>
+                    <tr class="active">
+                        <th style="width:300px; height:60px">商品名</th>
+                        <th style="width:100px">単価（税込）</th>
+                        <th style="width:100px">数量</th>
+                        <th style="width:100px">小計</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @cart_products.each do |cart_product| %>
+                        <tr>
+                            <td  style="height:60px">
+                                <%= attachment_image_tag cart_product.product.image, :image, :fill, 50, 50, format: 'png', class: "pull-left profile-img", fallback: "logo.png", size:'40x40' %>
+                                <%= cart_product.product.name %>
+                            </td>
+                            <td><%= money_notation((cart_product.product.price * 1.1)) %></td>
+                            <td><%= cart_product.quantity %></td>
+                            <td><%=  money_notation((cart_product.product.price*cart_product.quantity*1.1))%></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <!--金額テーブル-->
+        <div class="col-xs-2 col-xs-offset-0" style="font-size: 12pt; line-height: 100%; ">
+            <table class="table table-hover table-bordered" style="font-size: 12pt; line-height: 100%; ">
+                <tbody>
+                    <tr>
+                        <th class="active" style="width:100px; height:60px">送料</th>
+                        <td style="width:100px"><%= money_notation(@postage) %></td>
+                    </tr>
+                    <tr>
+                        <th class="active" style="height:60px">商品合計</th>
+                        <td><%= money_notation(@cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum)%></td>
+                    </tr>
+                    <tr>
+                        <th class="active" style="height:60px">請求金額</th>
+                        <td><%= money_notation(@cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum + @postage)%></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--注文情報-->
+    <div class="row">
+        <div class="col-xs-11 col-xs-offset-1 " >
+        <table BORDER='0' style="font-size: 14pt; line-height: 150%; ">
+            <tr>
+                <th style="width:150px; height:90px">お支払い方法</th>
+                <td style="width:800px" >
+                    <% case @order_history.payment_option %>
+                    <% when "credit_card" %>
+                        <% "クレジットカード" %> 
+                    <% when "bank_transfer" %>
+                        <%= "銀行振込" %>
+                    <% end %>
+                </td>
+            </tr>
+            <tr>
+                <th  style="height:90px">お届け先</th>
+                <td  style="width:360px">
+                    <%=  @order_history.postal_code %>
+                    <%= @order_history.address %><br>
+                    <%= @order_history.addressee %>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </div>
+    <!--保存ボタン-->
+    <div class="row">
+        <%= form_for(@order_history, url:orders_path) do |f| %>
+
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <!--支払い方法-->
+            <%= f.hidden_field :payment_option, :value => @order_history.payment_option %>
+            <!--お届け先-->
+            <%= f.hidden_field :postal_code, :value =>  @order_history.postal_code %>
+            <%= f.hidden_field :address, :value =>  @order_history.address %>
+            <%= f.hidden_field :addressee, :value =>  @order_history.addressee %>
+            <!--送料、請求金額-->
+            <%= f.hidden_field :postage, :value => 800 %>
+            <%= f.hidden_field :billing, :value => @cart_products.map{ |cp| (cp.product.price*cp.quantity*1.1).round }.sum + @postage %>
+
+            <%= f.hidden_field :radio_number, :value =>@order_history.radio_number %>
+            <!--ボタン-->
+                <div class="col-xs-2  col-xs-offset-1">
+                    <%= link_to "購入情報入力へ戻る", new_order_path, class: "btn btn-success btn-lg"%>
+                </div>
+                <div class="col-xs-2 col-xs-offset-2">
+                    <%= f.submit "注文を確定する", class: "btn btn-success btn-lg" %>
+                </div>
+        <% end %>
+    </div>
+</div>
