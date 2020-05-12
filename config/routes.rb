@@ -19,7 +19,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :products, only: [:index, :show]
+    resources :products, only: [:index, :show] do
+      collection do
+        post 'search'
+      end
+    end
 
     resources :cart_products, only: [:create, :index, :update, :destroy] do
       collection do
