@@ -16,15 +16,27 @@ class Public::DestinationsController < ApplicationController
   end
 
   def edit
+    @destination =Destination.find(params[:id])
   end
 
   def update
+    @destination =Destination.find(params[:id])
+    if @destination.update(destination_params)
+       redirect_to destinations_path(@destination.id)
+    else
+       render :edit
+      end
   end
 
   def destroy
     @destination = Destination.find(params[:id])
     @destination.destroy
     redirect_to destinations_path, success: "配送先の削除が完了しました。"
+  end
+
+  private
+  def destination_params
+    params.require(:destination).permit(:postal_code, :address, :addressee)
   end
 
   private
