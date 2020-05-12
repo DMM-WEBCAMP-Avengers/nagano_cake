@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!, except: :top
+
   def top
     @products = Product.all.shuffle.first(4)
   end

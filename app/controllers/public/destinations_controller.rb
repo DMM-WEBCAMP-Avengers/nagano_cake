@@ -1,4 +1,6 @@
 class Public::DestinationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @destination = Destination.new
     @destinations = Destination.where(user_id: current_user.id)
@@ -22,9 +24,9 @@ class Public::DestinationsController < ApplicationController
   def update
     @destination =Destination.find(params[:id])
     if @destination.update(destination_params)
-       redirect_to destinations_path(@destination.id)
+      redirect_to destinations_path(@destination.id)
     else
-       render :edit
+      render :edit
       end
   end
 
