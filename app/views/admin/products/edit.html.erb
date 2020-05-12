@@ -6,7 +6,7 @@
   <div class="row">
     <%= form_for(@product,url: admin_product_path(@product.id)) do |f| %>    <%# urlを追加してみたけどerror%>
       <div class="col-xs-4">
-        <%= attachment_image_tag @product, :image, :fill, 400, 400,format: 'jpg', fallback: "logo.png", size:'245x245' %><%# defaultで画像を用意する%>　<%# 5/10formatを'jpg'、sizeを'245x245'に変更 %>
+        <%= attachment_image_tag @product, :image,format: 'jpg', fallback: "logo.png", size:'245x245' %><%# defaultで画像を用意する%>　<%# 5/10formatを'jpg'、sizeを'245x245'に変更 %>
         <%= f.attachment_field :image %>
       </div>
 

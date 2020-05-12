@@ -5,7 +5,7 @@
 
 	<div class="row">
 		<div class="col-xs-4">
-			<%= attachment_image_tag @product, :image, :fill, 400, 400, format: "jpg", fallback: "logo.png", size:'245x245' %>
+			<%= attachment_image_tag @product, :image, format: "jpg", fallback: "logo.png", size:'245x245' %>
 			<%# 5/10fillを400,400にfromatを'jpg'に変更 %>
 		</div>
 		<div class="col-xs-8">
