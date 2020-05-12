@@ -56,4 +56,13 @@
 			</table>
 		</div>
 	</div>
+
+	<%# 念の為ページネーションを追加しました。 %>
+	<div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <%# ページネーションのページ遷移の際にparamsを渡して、以前のページの情報を使い回す %>
+      <%= paginate @order_histories %>
+    </div>
+  </div>
+
 </div>
