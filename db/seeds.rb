@@ -61,7 +61,7 @@ genres = ["ケーキ", "プリン", "フィナンシェ", "キャンディ"]
     price = (n + 1) * 100
     validations = [true, false]
     validation_random = rand(0..1)
-    valisation = validations[validation_random]
+    validation = validations[validation_random]
 
     Product.create!(
       genre_id: (i + 1),
