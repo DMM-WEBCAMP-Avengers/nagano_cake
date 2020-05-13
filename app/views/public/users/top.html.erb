@@ -23,16 +23,16 @@
                 <% @products.shuffle.first(4).each do |product| %>
                     <div class="col-xs-3 cakes">
                         <%= link_to product_path(product.id), :style=>"color:black" do %>
-                            <div class="image">
+                            <div class="cakesimage">
                                 <%= attachment_image_tag product, :image, format: 'jpg', class: "pull-left profile-img" "img-responsive", fallback: "logo.png", size:'100x100' %><br>
                             </div>
                             <div>
-                                <%= product.name %></p>
+                                <%= product.name %>
                             </div>
                             <!-- 売り切れの場合値段を表示しない -->
                             <div class="create-order-btn-wrapper">
                                 <% if product.validation == true %>
-                                    <%= product.price %>円     
+                                    ¥<%= product.price %>   
                                 <% end %>
                             </div>
                             <div>
