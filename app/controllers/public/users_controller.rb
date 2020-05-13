@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
 
   def top
     @products = Product.joins(:genre).where(genres: { validation: true }).shuffle.first(4)
+    @genres = Genre.where(validation: true)
   end
 
   def edit
