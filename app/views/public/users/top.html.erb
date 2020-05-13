@@ -21,22 +21,23 @@
 
             <div class="row">
 
-                <% @products.each do |p| %>
-                    <div class="col-xs-3">
+                <% @products.shuffle.first(4).each do |p| %>
+                        <div class="col-xs-3 cakes">
                                 <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
                                 <%= link_to product_path(p.id), :style=>"color:black" do %>
                                 <%# 5/10 "p.image"の"image"を削除,fillを400,formatを'jpeg'に変更 %>
-                                    <%= attachment_image_tag p, :image, format: 'jpg', class: "pull-left profile-img", fallback: "logo.png", size:'100x100' %>
-                                    <br>
-                                    <%= p.name %><br>
+                                    <div class="image">
+                                      <%= attachment_image_tag p, :image, format: 'jpg', class: "pull-left profile-img" "img-responsive", fallback: "logo.png", size:'100x100' %><br>
+                                    </div>
+                                    <p><%= p.name %></p>
+                                    <p>¥<%= p.price %></p>
                                 <% end %>
-                                ¥<%= p.price %>
-                    </div>
+                        </div>
                 <% end %>
 
             </div>
 
-            <div class="row">
+            <div class="row nextview">
                 <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
                 <%= link_to "もっと見る", products_path, :style=>"color:black" %>
             </div>
