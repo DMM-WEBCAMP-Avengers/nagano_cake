@@ -10,46 +10,42 @@
                 <%= link_to "カートを空にする", destroy_all_cart_products_path, method: :delete, class:"btn btn-danger" %>
             </div>
             <!-- カート商品一覧 -->
-            <div class="cart-item-table row">
-                <table class="table">
+                <table class="table"  BORDER='1' style="font-size: 14pt">
                     <thead>
                         <tr>
-                            <th class="active">商品名</th>
-                            <th class="active text-right">単価（税込）</th>
-                            <th class="active text-right">数量</th>
-                            <th class="active text-right">小計</th>
-                            <th class="active"></th>
+                            <th class="active text-center" style="width:400px">商品名</th>
+                            <th class="active text-center" style="width:100px">単価（税込）</th>
+                            <th class="active text-center" style="width:100px">数量</th>
+                            <th class="active text-center" style="width:80px">小計</th>
+                            <th class="active" style="width:120px"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @cart_products.each do |cart_product| %>
                             <tr>
-                                <td>
-                                    <%= attachment_image_tag cart_product.product, :image,format: 'jpg', fallback: "logo.png", size:'60x60' %>
+                                <td class="text-center" style="height60px"> 
+                                    <%= attachment_image_tag cart_product.product, :image, format: 'jpg', fallback: "logo.png", size:'60x60' %>
                                     <%= cart_product.product.name %>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-center">
                                     <%= money_notation(cart_product.product.price*1.1) %>円
                                 </td>
-                                <td class="text-right">
+                                <td class="text-center">
                                     <%= form_for(cart_product) do |f| %>
-                                        <div class="row">
-                                            <%= f.number_field :quantity, min:1,class: "col-6" %>
-                                            <%= f.submit "変更", class: "btn btn-sm btn-outline-danger offset-1 col-4" %>
-                                        </div>
+                                            <%= f.number_field :quantity, min:1, style: "width: 50%"%>
+                                            <%= f.submit "変更", class: "btn btn-sm btn-outline-danger offset-1 col-4", class: "btn btn-primary" %>
                                     <% end %>
                                 </td>
-                                <td class="text-right">
+                                <td class="text-center">
                                     <%= money_notation(cart_product.product.price*cart_product.quantity*1.1) %>円
                                 </td>
-                                <td class="text-right">
-                                    <%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
+                                <td class="text-center">
+                                    <%= link_to "削除する", cart_product_path(cart_product.id), method: :delete, class: "btn btn-danger" %>
                                 </td>
                             </tr>
                         <% end %>
                     </tbody>
                 </table>
-            </div>
             <!-- 合計金額 -->
             <div class="cart-total-table row">
                 <div class="col-xs-8 return-shopping-btn-wrapper"><%= link_to "買い物を続ける", root_path, class:"btn btn-default" %></div>
@@ -64,7 +60,7 @@
             </div>
         <!-- 商品ない場合リンクを表示しない -->
         <% if current_user.cart_products.present? %>
-        <div class="create-order-btn-wrapper col-xs-4 col-xs-offset-4">
+        <div class="create-order-btn-wrapper col-xs-4 col-xs-offset-4 ">
             <%= link_to "情報入力に進む", new_order_path, class:"btn btn-primary form-control" %>
         </div>
         <% end %>

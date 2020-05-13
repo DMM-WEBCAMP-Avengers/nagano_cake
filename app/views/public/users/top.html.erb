@@ -1,4 +1,4 @@
-<div class="container" >
+<div class="container">
     <div class="row">
         <div class="col-xs-2">
             <%= render 'layouts/search_side_bar', genres: @genres %>
@@ -6,40 +6,51 @@
         <div class="col-xs-10">
             <div class="bg_test">
                 <div class="bg_test-text">
-                    <%# 5/10店名表記変更統一 %>
                     <p>ようこそ、ながのCAKEへ！</p>
                     <p>このサイトは、ケーキ販売のECサイトになります。</p>
                     <p>会員でない方も商品の閲覧はできますが、</p>
                     <p>購入には会員登録が必要になります。</p>
                 </div>
             </div>
+
             <div class="row">
                 <div>
-                    <strong>オススメ商品</strong>
+                    <h3><strong>オススメ商品</strong></h3>
                 </div>
             </div>
 
             <div class="row">
-
-                <% @products.shuffle.first(4).each do |p| %>
-                        <div class="col-xs-3 cakes">
-                                <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
-                                <%= link_to product_path(p.id), :style=>"color:black" do %>
-                                <%# 5/10 "p.image"の"image"を削除,fillを400,formatを'jpeg'に変更 %>
-                                    <div class="image">
-                                      <%= attachment_image_tag p, :image, format: 'jpg', class: "pull-left profile-img" "img-responsive", fallback: "logo.png", size:'100x100' %><br>
-                                    </div>
-                                    <p><%= p.name %></p>
-                                    <p>¥<%= p.price %></p>
+                <% @products.shuffle.first(4).each do |product| %>
+                    <div class="col-xs-3 cakes">
+                        <%= link_to product_path(product.id), :style=>"color:black" do %>
+                            <div class="image">
+                                <%= attachment_image_tag product, :image, format: 'jpg', class: "pull-left profile-img" "img-responsive", fallback: "logo.png", size:'100x100' %><br>
+                            </div>
+                            <div>
+                                <%= product.name %></p>
+                            </div>
+                            <!-- 売り切れの場合値段を表示しない -->
+                            <div class="create-order-btn-wrapper">
+                                <% if product.validation == true %>
+                                    <%= product.price %>円     
                                 <% end %>
-                        </div>
+                            </div>
+                            <div>
+                                <% if product.validation == true %>
+                                    販売中
+                                <% else %>
+                                    売切れ
+                                <% end %>
+                            </div>
+                        <% end %>
+                    </div>
                 <% end %>
-
             </div>
-
-            <div class="row nextview">
-                <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
-                <%= link_to "もっと見る", products_path, :style=>"color:black" %>
+            <br>
+            <div class="row">
+                <div class="row nextview">
+                    <%= link_to "もっと見る", products_path, :style=>"color:black" %>
+                </div>
             </div>
         </div>
     </div>
