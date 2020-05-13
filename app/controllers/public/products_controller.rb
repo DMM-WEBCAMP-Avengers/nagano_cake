@@ -1,6 +1,6 @@
 class Public::ProductsController < ApplicationController
   def index
-    @products = Product.all.page(params[:page]).per(8)
+    @products = Product.joins(:genre).where(genres: { validation: true }).page(params[:page]).per(8)
     @quantity = Product.count
   end
 
