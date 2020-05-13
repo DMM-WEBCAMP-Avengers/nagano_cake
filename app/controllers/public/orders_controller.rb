@@ -74,7 +74,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @order_histories = OrderHistory.where(user_id: current_user.id)
+    @order_histories = OrderHistory.where(user_id: current_user.id).order(created_at: "DESC").page(params[:page]).per(10)
   end
 
   def show

@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: :top
 
   def top
-    @products = Product.all.shuffle.first(4)
+    @products = Product.joins(:genre).where(genres: { validation: true }).shuffle.first(4)
     @genres = Genre.where(validation: true)
   end
 
