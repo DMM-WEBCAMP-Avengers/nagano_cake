@@ -25,8 +25,8 @@
               <%= image_tag 'header-logo.png', :size => '150x60' %>
             </a>
           <% end %>
-        </nav>
-        <nav>
+        </nav><br>
+        <nav class="clearfix">
           <ul class="nav nav-pills navbar-light navbar-right">
             <%# 今のURLにadminが入っているかどうかでどちらのサイトなのかを識別 %>
             <% if request.url.include?('admin') %>
@@ -47,7 +47,6 @@
                 <li>
                   <%= link_to "ログアウト", destroy_admin_user_session_path, method: :delete, :style=>"color:black;" %>
                 </li>
-
               <%# 管理者サイト かつ 管理人でログインしていない場合(adminのログイン画面のみ) %>
               <% else %>
                 <li>
@@ -92,6 +91,9 @@
             <li><a href="" title=""></a></li>
           </ul>
         </nav>
+        <% if request.url.include?('admin') && admin_user_signed_in? %>
+          <input type="text" style="float: right;">
+        <% end %>
         <div class="row">
           <div class="col-xs-12">
             <% flash.each do |key, value| %>
