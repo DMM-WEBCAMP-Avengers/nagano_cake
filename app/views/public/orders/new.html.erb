@@ -30,18 +30,18 @@
 
     <div class="form-group">
       <div class="col-xs-9 col-xs-offset-1">
-        <%= f.radio_button :radio_number, 0 %>
+        <%= f.radio_button :radio_number, 1 %>
         <%# 改行するとエラーが出てしまう。%>
         <%= f.label :radio_number,
         "ご自身の住所\n#{current_user.postal_code} #{current_user.address}\n#{current_user.last_name}　#{current_user.first_name}",
-        value: 0, style: "display: inline-block;" %>
+        value: 1, style: "display: inline-block;" %>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-xs-9 col-xs-offset-1">
-        <%= f.radio_button :radio_number, 1 %>
-        <%= f.label :radio_number, "登録先住所から選択", value: 1, style: "display: inline-block;" %><br>
+        <%= f.radio_button :radio_number, 2 %>
+        <%= f.label :radio_number, "登録先住所から選択", value: 2, style: "display: inline-block;" %><br>
         <%= f.collection_select :destination_id,
         Destination.where(user_id: current_user.id),
         :id , :view_destination, form: "new_order_history" %>
@@ -50,8 +50,8 @@
 
     <div class="form-group">
       <div class="col-xs-9 col-xs-offset-1">
-        <%= f.radio_button :radio_number, 2 %>
-        <%= f.label :radio_number, "新しいお届け先", value: 2, style: "display: inline-block;" %><br>
+        <%= f.radio_button :radio_number, 3 %>
+        <%= f.label :radio_number, "新しいお届け先", value: 3, style: "display: inline-block;" %><br>
         <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
         <%= f.text_field :postal_code %><br>
         <%= f.label :address, "住所" %>
