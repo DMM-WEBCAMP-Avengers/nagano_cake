@@ -26,7 +26,7 @@
                                 <%# 5/9 link_toにstyleを追加し文字色を黒に統一 %>
                                 <%= link_to product_path(p.id), :style=>"color:black" do %>
                                 <%# 5/10 "p.image"の"image"を削除,fillを400,formatを'jpeg'に変更 %>
-                                    <div class="image">
+                                    <div class="cakesimage">
                                       <%= attachment_image_tag p, :image, format: 'jpg', class: "pull-left profile-img" "img-responsive", fallback: "logo.png", size:'100x100' %><br>
                                     </div>
                                     <p><%= p.name %></p>
