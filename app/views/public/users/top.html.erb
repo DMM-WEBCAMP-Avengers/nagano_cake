@@ -30,7 +30,7 @@
                                 <%= product.name %>
                             </div>
                             <!-- 売り切れの場合値段を表示しない -->
-                            <div class="create-order-btn-wrapper">
+                            <div>
                                 <% if product.validation == true %>
                                     ¥<%= product.price %>   
                                 <% end %>
@@ -47,10 +47,8 @@
                 <% end %>
             </div>
             <br>
-            <div class="row">
-                <div class="row nextview">
-                    <%= link_to "もっと見る", products_path, :style=>"color:black" %>
-                </div>
+            <div class="row nextview">
+                <%= link_to "もっと見る", products_path, :style=>"color:black" %>
             </div>
         </div>
     </div>
