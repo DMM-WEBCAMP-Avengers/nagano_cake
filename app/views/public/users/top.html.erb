@@ -26,22 +26,16 @@
                             <div class="cakesimage">
                                 <%= attachment_image_tag product, :image, format: 'jpg', class: "pull-left profile-img" "img-responsive", fallback: "logo.png", size:'100x100' %><br>
                             </div>
-                            <div>
-                                <%= product.name %>
-                            </div>
+                                <%= product.name %><br>
                             <!-- 売り切れの場合値段を表示しない -->
-                            <div>
                                 <% if product.validation == true %>
                                     ¥<%= product.price %>   
                                 <% end %>
-                            </div>
-                            <div>
                                 <% if product.validation == true %>
                                     販売中
                                 <% else %>
                                     売切れ
                                 <% end %>
-                            </div>
                         <% end %>
                     </div>
                 <% end %>
