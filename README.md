@@ -1,7 +1,8 @@
 # ながの CAKE
-![alt](app/assets/images/logo.png)
-<img src="attach:logo.png" alt="attach:logo" title="attach:logo" width="100" height="100">
-長野県にある小さなな洋菓子店「ながのCAKE」の商品を通販するためのECサイト
+<img src="app/assets/images/logo.png" width="100" height="100">
+長野県にある小さなな洋菓子店「ながのCAKE」の商品を通販するためのECサイト  
+元々近隣住民が顧客だったが、昨年始めたInstagramが人気となり、全国から中右門がくるようになった。  
+InstagramのDMやメールで通販の注文を受けていたが、情報管理が煩雑になってきたため、管理機能を含んだ通販サイトを開設しようと思い至った。(コロナ対策バッチリの優良店舗)
 
 # 使い方
 _インストール方法_  
