@@ -7,7 +7,7 @@
       <h3>商品一覧<span style="font-size:70%;">（全<%= @quantity %>件）</span></h3> <%# 全商品点数を表記%>
 
       <% @products.each do |product| %>
-        <div class="col-xs-3 ">
+        <div class="col-xs-3 text-center ">
             <%= link_to product_path(product.id) do %>
               <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "logo.png", size: 150 %><br>
             <% end %>
@@ -16,14 +16,15 @@
             <% if product.validation == true %>
                 <%= product.price %>円     
             <% end %>
-              <% if product.validation == true %>
-                  販売中
-              <% else %>
-                  売切れ
-              <% end %>
+            <!-- 販売状況 -->
+            <% if product.validation == true %>
+                販売中
+            <% else %>
+                売切れ
+            <% end %>
         </div>
       <% end %>
-
+      
       <div class="col-xs-6 col-xs-offset-3 ">
         <%= paginate @products %>
       </div>
