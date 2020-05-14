@@ -1,22 +1,31 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-2">
-      <%= render 'layouts/search_side_bar', genres: @genres %>
-    </div>
+      <div class="col-xs-2">
+        <%= render 'layouts/search_side_bar', genres: @genres %>
+      </div>
     <div class="col-xs-10">
       <h3>商品一覧<span style="font-size:70%;">（全<%= @quantity %>件）</span></h3> <%# 全商品点数を表記%>
 
       <% @products.each do |product| %>
-      <div class="col-xs-3 ">
-        <div>
-          <%= link_to product_path(product.id) do %>
-          <%# 5/10 @productの@を削除,fill:400,size:150に変更 %>
-          <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "logo.png", size: 150 %><br>
-          <% end %>
-          <%= product.name %><br>
-          <%= product.price %>円<br>
+        <div class="col-xs-3 ">
+          <div>
+            <%= link_to product_path(product.id) do %>
+              <%= attachment_image_tag product, :image, format: 'jpeg', fallback: "logo.png", size: 150 %><br>
+            <% end %>
+            <%= product.name %><br>
+            <!-- 売り切れの場合値段を表示しない -->
+            <% if product.validation == true %>
+                <%= product.price %>円     
+            <% end %>
+            <div>
+              <% if product.validation == true %>
+                  販売中
+              <% else %>
+                  売切れ
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
       <% end %>
 
       <div class="col-xs-6 col-xs-offset-3 ">
