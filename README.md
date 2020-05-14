@@ -1,31 +1,31 @@
 # ながの CAKE
-![alt](images/logo.png)
+![alt](app/assets/images/logo.png)
 長野県にある小さなな洋菓子店「ながのCAKE」の商品を通販するためのECサイト
 
 # 使い方
 '''
-インストール方法
-    $ git clone https://github.com/DMM-WEBCAMP-Avengers/nagano_cake.git
-    $ cd nagano-cake
-    $ bundle install
-    $ rails db:migrate
+インストール方法  
+    $ git clone https://github.com/DMM-WEBCAMP-Avengers/nagano_cake.git  
+    $ cd nagano-cake  
+    $ bundle install  
+    $ rails db:migrate  
 '''
 '''
-テスト方法
-ターミナルで下記のコマンドでサーバー立ち上げ後に
-[ローカルサーバー](http://localhost:3000)にアクセスしてご覧ください。 
-    $ rails s -b 0.0.0.0
+テスト方法  
+ターミナルで下記のコマンドでサーバー立ち上げ後に  
+[ローカルサーバー](http://localhost:3000)にアクセスしてご覧ください。  
+    $ rails s -b 0.0.0.0  
 
-管理者用アカウント
+- 管理者用アカウント  
 メールアドレス：admin@example.com  
-パスワード：password
-を入力してログインしてください。
+パスワード：password  
+を入力してログインしてください。  
 
-顧客用アカウント
-メールアドレス:example0@gmail.com
-パスワード:password
-を入力してログインしてください。
-（登録画面にて新規登録も可能です。）
+- 顧客用アカウント
+メールアドレス：example0@gmail.com  
+パスワード：password  
+を入力してログインしてください。  
+（登録画面にて新規登録も可能です。）  
 '''
 
 # 実装機能
@@ -59,7 +59,7 @@
 |10ジャンル設定機能|・ジャンルの追加・変更・ステータス切り替えを行うことができる。|×|
 
 # 開発環境
--vagrant
--Ruby 2.5.7
+- vagrant
+- Ruby 2.5.7
 
-### 製作グループ アベンジャーズ(4名)
+##### 製作グループ アベンジャーズ(4名)
