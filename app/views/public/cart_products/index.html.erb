@@ -13,30 +13,30 @@
                 <table class="table"  BORDER='0' style="font-size: 14pt">
                     <thead>
                         <tr>
-                            <th class="active text-center" style="width:400px">商品名</th>
-                            <th class="active text-center" style="width:100px">単価（税込）</th>
-                            <th class="active text-center" style="width:100px">数量</th>
-                            <th class="active text-center" style="width:80px">小計</th>
+                            <th class="active text-left" style="width:300px">商品名</th>
+                            <th class="active text-left" style="width:100px">単価（税込）</th>
+                            <th class="active text-left" style="width:100px">数量</th>
+                            <th class="active text-left" style="width:80px">小計</th>
                             <th class="active" style="width:120px"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <% @cart_products.each do |cart_product| %>
                             <tr>
-                                <td class="text-center" style="height60px"> 
+                                <td class="text-left" style="height60px"> 
                                     <%= attachment_image_tag cart_product.product, :image, format: 'jpg', fallback: "logo.png", size:'60x60' %>
                                     <%= cart_product.product.name %>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-left">
                                     <%= money_notation(cart_product.product.price*1.1) %>円
                                 </td>
-                                <td class="text-center">
+                                <td class="text-left">
                                     <%= form_for(cart_product) do |f| %>
                                             <%= f.number_field :quantity, min:1, style: "width: 50%"%>
                                             <%= f.submit "変更", class: "btn btn-sm btn-outline-danger offset-1 col-4", class: "btn btn-primary" %>
                                     <% end %>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-left">
                                     <%= money_notation(cart_product.product.price*cart_product.quantity*1.1) %>円
                                 </td>
                                 <td class="text-center">
