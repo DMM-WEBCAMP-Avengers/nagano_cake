@@ -1,16 +1,18 @@
 # ながの CAKE
 ![alt](app/assets/images/logo.png)
+<img src="attach:cat.jpg" alt="attach:cat" title="attach:cat" width="200" height="200">
 長野県にある小さなな洋菓子店「ながのCAKE」の商品を通販するためのECサイト
 
 # 使い方
-'''
+'
 インストール方法  
     $ git clone https://github.com/DMM-WEBCAMP-Avengers/nagano_cake.git  
     $ cd nagano-cake  
     $ bundle install  
     $ rails db:migrate  
-'''
-'''
+'  
+
+'
 テスト方法  
 ターミナルで下記のコマンドでサーバー立ち上げ後に  
 [ローカルサーバー](http://localhost:3000)にアクセスしてご覧ください。  
@@ -26,7 +28,7 @@
 パスワード：password  
 を入力してログインしてください。  
 （登録画面にて新規登録も可能です。）  
-'''
+'
 
 # 実装機能
 
