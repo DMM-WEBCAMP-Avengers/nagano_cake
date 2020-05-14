@@ -2,15 +2,16 @@
 
 長野県にある小さなな洋菓子店「ながのCAKE」の商品を通販するためのECサイト  
 元々近隣住民が顧客だったが、昨年始めたInstagramが人気となり、全国から注文が来るようになった。  
-InstagramのDMやメールで通販の注文を受けていたが、情報管理が煩雑になってきたため、管理機能を含んだ通販サイトを開設しようと思い至った。  
+InstagramのDMやメールで通販の注文を受けていたが、情報管理が煩雑になってきたため、管理機能を含んだ通販サイトを開設しようと思い至った。(コロナに負けない優良店舗) 
 
 # 使い方
 _インストール方法_  
-    $ git clone https://github.com/DMM-WEBCAMP-Avengers/nagano_cake.git  
+    $ git clone git@github.com:DMM-WEBCAMP-Avengers/nagano_cake.git(SSH)  
+        or $ git clone https://github.com/DMM-WEBCAMP-Avengers/nagano_cake.git (HTTPS) 
     $ cd nagano-cake  
     $ bundle install  
     $ rails db:migrate  
-    $ rails db:seed
+    $ rails db:seed  
     $ rails s -b 0.0.0.0  
 
 _テスト方法_  
@@ -75,4 +76,4 @@ _テスト方法_
     - kaminari 1.1.1
     - faker
     - rails-i18n
-##### 製作グループ アベンジャーズ(4名)
+##### DMM WEBCAMP 2ヶ月目課題製作グループ アベンジャーズ(いっとう とし ゆう たっけ 計4名)  
