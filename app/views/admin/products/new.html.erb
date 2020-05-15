@@ -1,23 +1,24 @@
 <div class="jumbotron">
     <div class="container">
+
         <div class="row">
             <div class="col-xs-6 col-xs-offset-0">
                 <h2>商品新規登録</h2>
             </div>
         </div>
-        <!--商品画像画像登録-->
-        <div class="row">
-            <div class="col-xs-2 col-xs-offset-0">
-                <div class="img-fluid">
-                <%= attachment_image_tag @product, :image, :fill, 400, 400,format: 'jpg', fallback: "logo.png", size:'300x300' %>
-                <%= form_for(@product, url:admin_products_path) do |f| %>
-                    <%= render 'layouts/error_messages', model: f.object %>
-                    <%= f.attachment_field :image, placeholder:"商品画像" %>
-                </div>
-            </div>
-            <!--商品項目入力欄-->
-            <form class="form-horizontal">
-                <div class="col-xs-6 col-xs-offset-4">
+            
+            <%= form_for(@product, url:admin_products_path) do |f| %>
+            <%= render 'layouts/error_messages', model: f.object %>
+                <div class="row">
+                    <!--商品画像画像登録-->
+                    <div class="col-xs-8">
+                        <div class="img-fluid">
+                        <%= attachment_image_tag @product, :image,format: 'jpg', fallback: "logo.png", size:'250x250' %>
+                            <%= f.attachment_field :image, placeholder:"商品画像" %>
+                        </div>
+                    </div>
+                    <!--商品項目入力欄-->
+                    <div class="col-xs-4">
                         <div class="form-group form-group-lg" >
                             <%= f.label :name, '商品名' %>
                             <%= f.text_field :name %> 
@@ -41,13 +42,14 @@
                                 "売り切れ": false
                             } %> 
                         </div>
-                        <div class="col-xs-2 col-xs-offset-6">
-                            <%= f.submit "新規登録" , class: "btn btn-primary"  %>
-                        </div>
-                    <% end %>
+                    </div>
                 </div>
-            </form>
-        </div>
-        
+                <div class="row">
+                    <div class="col-xs-4 col-xs-offset-8">
+                        <%= f.submit "新規登録" , class: "btn btn-primary"  %>
+                    </div>
+                </div>
+            <% end %>
+
     </div>
 </div>
